@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <TABLE border="1">
+        <TR>
+            <TD>任务单号</TD>
+            <TD>项目编号名称</TD>
+            <TD>日期</TD>
+            <TD>产品型号</TD>
+            <TD>执行人</TD>
+            <TD>工时</TD>
+            <TD>开发记录</TD>
+            <TD>操作</TD>
+        </TR>
+
+        {% for progress in progressset %}
+            <TR>
+                <TD>{{progress.t_num}}</TD>
+                <TD>{{progress.pj_num_name}}</TD>
+                <TD>{{progress.data}}</TD>
+                <TD>{{progress.pd_model}}</TD>
+                <TD>{{progress.executor}}</TD>
+                <TD>{{progress.hours}}</TD>
+                <TD>{{progress.record}}</TD>
+            </TR>
+        {% endfor%}
+    </TABLE>
+    {{wrong}}
+</body>
+</html>

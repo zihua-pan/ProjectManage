@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>产品管理</title>
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="product_file" required >
+    <input type="submit" value="导入数据" >
+</form>
+<a href="{% url 'project:download' %}">
+    <input type="button" value="导出数据" >
+</a>
+
+    <TABLE border="1">
+        <TR>
+            <TD>产品型号</TD>
+            <TD>产品类型</TD>
+            <TD>产品名称</TD>
+            <TD>操作</TD>
+        </TR>
+
+        {% for product in productset %}
+            <TR>
+                <TD>{{product.pd_model}}</TD>
+                <TD>{{product.pd_type}}</TD>
+                <TD>{{product.pd_name}}</TD>
+                <TD>
+                    <a href="{% url 'project:delete' %}">
+                        <input name="{{forloop.count}}" type="button" value="删除" >
+                    </a>
+                </TD>
+            </TR>
+        {% endfor%}
+    </TABLE>
+    {{wrong}}
+</body>
+</html>

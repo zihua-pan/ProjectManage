@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <TABLE border="1">
+        <TR>
+            <TD>任务单号</TD>
+            <TD>项目编号名称</TD>
+            <TD>版本数</TD>
+            <TD>版本名称</TD>
+            <TD>执行人</TD>
+            <TD>开始时间</TD>
+            <TD>结束时间</TD>
+            <TD>操作</TD>
+        </TR>
+
+        {% for vision in visionset %}
+            <TR>
+                <TD>{{vision.t_num}}</TD>
+                <TD>{{vision.pj_num_name}}</TD>
+                <TD>{{vision.v_num}}</TD>
+                <TD>{{vision.v_name}}</TD>
+                <TD>{{vision.executor}}</TD>
+                <TD>{{vision.s_time}}</TD>
+                <TD>{{vision.e_time}}</TD>
+
+
+            </TR>
+        {% endfor%}
+    </TABLE>
+    {{wrong}}
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Role</title>
+</head>
+<body>
+    <TABLE border="1">
+        <TR>
+            <TD>编号</TD>
+            <TD>角色名</TD>
+            <TD>包含人员</TD>
+            <TD>操作</TD>
+        </TR>
+
+        <TR>
+            <TD>1</TD>
+            <TD>管理员</TD>
+            <TD>
+                {% for mg in mg_user %}
+                    {{mg.username}}&nbsp
+                {% endfor %}
+            </TD>
+            <TD></TD>
+        </TR>
+
+        <TR>
+            <TD>2</TD>
+            <TD>组长</TD>
+            <TD>{% for gl in gl_user %}
+                    {{gl.username}}&nbsp
+                {% endfor %}
+            </TD>
+            <TD></TD>
+        </TR>
+
+        <TR>
+            <TD>3</TD>
+            <TD>成员</TD>
+            <TD>
+                {% for mb in mb_user %}
+                    {{mb.username}}&nbsp
+                {% endfor %}
+            </TD>
+            <TD></TD>
+        </TR>
+
+    </TABLE>
+    {{wrong}}
+</body>
+</html>

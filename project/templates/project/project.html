@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <TABLE border="1">
+        <TR>
+            <TD>项目编号</TD>
+            <TD>项目名称</TD>
+            <TD>产品型号</TD>
+            <TD>项目经理</TD>
+            <TD>所属事业部</TD>
+            <TD>操作</TD>
+        </TR>
+
+        {% for project in projectset %}
+            <TR>
+                <TD>{{project.pj_num}}</TD>
+                <TD>{{project.pj_name}}</TD>
+                <TD>{{project.pd_model}}</TD>
+                <TD>{{project.pj_manager}}</TD>
+                <TD>{{project.bd}}</TD>
+            </TR>
+        {% endfor%}
+    </TABLE>
+    {{wrong}}
+</body>
+</html>

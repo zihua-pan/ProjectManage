@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务管理</title>
+</head>
+<body>
+    <TABLE border="1">
+        <TR>
+            <TD>任务单号</TD>
+            <TD>产品型号</TD>
+            <TD>项目编号名称</TD>
+            <TD>开发类型</TD>
+            <TD>开始时间</TD>
+            <TD>结束时间</TD>
+            <TD>任务状态</TD>
+            <TD>操作</TD>
+        </TR>
+
+        {% for task in taskset %}
+            <TR>
+                <TD>{{task.t_num}}</TD>
+                <TD>{{task.pj_num_name}}</TD>
+                <TD>{{task.pd_model}}</TD>
+                <TD>{{task.dev_type}}</TD>
+                <TD>{{task.s_time}}</TD>
+                <TD>{{task.e_time}}</TD>
+                <TD>{{task.t_status}}</TD>
+            </TR>
+        {% endfor%}
+    </TABLE>
+    {{wrong}}
+</body>
+</html>

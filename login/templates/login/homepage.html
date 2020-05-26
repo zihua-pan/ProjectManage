@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+    <p>系统管理</p>
+    <a href="{% url 'system:user' %}">用户管理</a><br>
+    <a href="{% url 'system:role' %}">角色管理</a><br>
+    <a href="{% url 'system:base' %}">基础数据</a><br>
+    <p>项目管理</p>
+    <a href="{% url 'project:product' %}">产品维护</a><br>
+    <a href="{% url 'project:project' %}">项目维护</a><br>
+    <a href="{% url 'project:task' %}">任务维护</a><br>
+    <a href="{% url 'project:vision' %}">版本维护</a><br>
+    <a href="{% url 'project:progress' %}">进度维护</a><br>
+</body>
+</html>
