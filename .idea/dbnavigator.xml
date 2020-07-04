@@ -23,7 +23,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="07658ba5-9515-4ed8-9927-ea3f0a36d44d">
+        <schema name="main" object-types="dataset trigger, table, constraint, view, column, index" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="07658ba5-9515-4ed8-9927-ea3f0a36d44d">
@@ -38,6 +42,7 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="07658ba5-9515-4ed8-9927-ea3f0a36d44d" dataset="main.login_user" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="07658ba5-9515-4ed8-9927-ea3f0a36d44d" dataset="main.project_product" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

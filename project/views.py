@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
+from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Product, Project, Progress, Task, Vision
 import xlrd, xlwt
 from django.db import transaction
@@ -6,16 +8,57 @@ from django.db import transaction
 # Create your views here.
 
 
-def product(request):
-    if Product.objects.count() == 0:
+'''
+def paginate_template(self):
+    total_date = self.objects.count()  # 获取数据总量
+    show_date = []
+    if total_date == 0:
         context = {
-            'wrong': '暂无数据',
+            'show_date': '暂无数据',
         }
     else:
-        context = {
-            'productset': list(Product.objects.all()),
-        }
-        #导出数据
+        va, remain = divmod(total_date, 10)
+        if remain:
+            va += 1  # 如果有余数，页数加1
+        if va == 1:  # 只有一页，显示所有数据
+            show_date = self.objects.all()
+        else:
+            for i in range(0, va):
+                if i < va - 1:  # 如果不是最后一页
+                    show_date.append(self.objects.all()[i * 10:10 * i + 9])
+                else:  # 最后一页数据
+                    show_date.append(self.objects.all()[va * 10:])
+        context = {'show_date': show_date}
+    return context
+
+'''
+
+def product(request):
+    del_id = request.GET.get('del_id')
+    page = request.GET.get('page')
+
+    #删除数据
+    if del_id:
+        Product.objects.get(id=del_id).delete()
+        #删完数据重定向到当前页
+        red_path = '?page='+str(page)
+        return HttpResponseRedirect(reverse('project:product')+red_path)
+    else:
+        # 分页
+        product_list = Product.objects.all()
+        # 按每页10条数据分页
+        paginator = Paginator(product_list, 10)
+        try:
+            product_date = paginator.page(page)
+        # 显示第一页,传入page的值为None或空
+        except PageNotAnInteger:
+            product_date = paginator.page(1)
+        # 传入page值不在有效范围
+        except EmptyPage:
+            product_date = paginator.page(paginator.num_pages)
+        context = {'product_date': product_date}
+
+    #导入数据
     if request.method == 'POST':
         product_file = request.FILES.get('product_file')
         file_type = product_file.name.split('.')[1]
@@ -42,7 +85,7 @@ def product(request):
             print('上传文件类型错误！')
     return render(request, 'project/product.html', context)
 
-
+#导出产品数据
 def download(request):
     data_table = []
     product_set = list(Product.objects.all().order_by('id'))
@@ -62,10 +105,6 @@ def download(request):
     workbook.save(r'C:\Users\Master\Desktop\test.xlsx')
     return render(request, 'project/task.html')
 
-
-def delete(request):
-
-    return render(request, 'project/product.html')
 
 
 def project(request):
@@ -114,3 +153,8 @@ def progress(request):
             'progressset': list(Progress.objects.all()),
         }
     return render(request, 'project/progress.html', context)
+
+
+#手动添加一条产品数据
+def product_add():
+    return HttpResponseRedirect(reverse('project:product'))

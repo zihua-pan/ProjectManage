@@ -1,40 +1,101 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>产品管理</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="product_file" required >
-    <input type="submit" value="导入数据" >
-</form>
-<a href="{% url 'project:download' %}">
-    <input type="button" value="导出数据" >
-</a>
 
+    {# 导入数据 #}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="product_file" required >
+        <input type="submit" value="导入数据" >
+    </form>
+
+    {# 导出数据 #}
+    <a href="{% url 'project:download' %}">
+        <input type="button" value="导出数据" >
+    </a>
+
+    {# 手动添加一条数据 #}
+    <input type="button" value="添加" onclick="popupFunc();" >
+    <script>
+    popupFunc = function () {
+        window.open("{% url 'project:'product_add %}", 'product_add', "status=1, height:300, width:300, toolbar=0, resizeable=1")
+    };
+    callback = function (city) {
+        var opt = document.createElement('option');
+        opt.innerText = city;
+        opt.setAttribute('selected', 'selected');
+        var selEle = document.getElementById('cityChoose');
+        selEle.appendChild(opt);
+    }
+    </script>
+
+    {# 显示当前页数据 #}
     <TABLE border="1">
         <TR>
-            <TD>产品型号</TD>
-            <TD>产品类型</TD>
-            <TD>产品名称</TD>
-            <TD>操作</TD>
+            <TH>序号</TH>
+            <TH>产品型号</TH>
+            <TH>产品类型</TH>
+            <TH>产品名称</TH>
+            <TH>操作</TH>
         </TR>
-
-        {% for product in productset %}
+        {% for product in product_date %}
             <TR>
+                <TD>{{forloop.counter}}</TD>
                 <TD>{{product.pd_model}}</TD>
                 <TD>{{product.pd_type}}</TD>
                 <TD>{{product.pd_name}}</TD>
                 <TD>
-                    <a href="{% url 'project:delete' %}">
-                        <input name="{{forloop.count}}" type="button" value="删除" >
+                    <a href="?page={{product_date.number}}&del_id={{product.id}}">
+                        <button type="button">删除</button>
                     </a>
                 </TD>
             </TR>
         {% endfor%}
     </TABLE>
+
     {{wrong}}
+
+    {# 分页 #}
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {# 如果有上一页 #}
+            {% if product_date.has_previous %}
+                <li>
+                    <a href="?page={{product_date.previous_page_number}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            {# 当前页数突出显示 #}
+            {% for pg in product_date.paginator.page_range %}
+                {% if product_date.number == pg %}
+                    <li class="active">
+                        <b><a href="?page={{pg}}">{{pg}}</a></b>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="?page={{pg}}">{{pg}}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {# 如果有下一页 #}
+            {% if product_date.has_next %}
+                <li>
+                    <a href="?page={{product_date.next_page_number}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </body>
 </html>

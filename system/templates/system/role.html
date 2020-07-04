@@ -1,16 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Role</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
     <TABLE border="1">
         <TR>
-            <TD>编号</TD>
-            <TD>角色名</TD>
-            <TD>包含人员</TD>
-            <TD>操作</TD>
+            <TH>编号</TH>
+            <TH>角色名</TH>
+            <TH>包含人员</TH>
+            <TH>操作</TH>
         </TR>
 
         <TR>
