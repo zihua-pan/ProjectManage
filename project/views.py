@@ -156,5 +156,21 @@ def progress(request):
 
 
 #手动添加一条产品数据
-def product_add():
-    return HttpResponseRedirect(reverse('project:product'))
+def product_add(request):
+    if request.method == 'GET':
+        return render(request, 'project/product.html')
+
+    elif request.method == 'POST':
+        pd_model = request.POST.get('pd_model')
+        pd_type = request.POST.get('pd_type')
+        pd_name = request.POST.get('pd_name')
+        context = {}
+        try:
+            #判断产品型号是否存在
+            Product.objects.get(pd_model=pd_model)
+            #产品型号不存在
+        except Product.DoesNotExist:
+            Product.objects.create(pd_model=pd_model, pd_type=pd_type, pd_name=pd_name)
+        else:
+            context = {'wrong': '产品型号已存在'}
+        return render(request, 'project/product.html', context)

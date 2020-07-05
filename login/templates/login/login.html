@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery-2.1.1/jquery.min.js' %}"></script>
+	<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
 
 <form action="" method="post" class="form-horizontal">
     {% csrf_token %}
-      <div style="text-align:center">
     <div class="form-group">
         <div class="form-inline">
             <label for="acc" class="col-sm-2 control-label">账号
@@ -43,7 +42,6 @@
         <div class="form-group">
             <input type="submit" value="登录">
         </div>
-    </div>
 </form>
 <p>{{wrong}}</p>
 </body>

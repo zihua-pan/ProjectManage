@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>产品管理</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery-2.1.1/jquery.min.js' %}"></script>
+	<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -19,26 +20,56 @@
 
     {# 导出数据 #}
     <a href="{% url 'project:download' %}">
-        <input type="button" value="导出数据" >
+        <button class="btn btn-primary btn-lg" type="button" >导出数据</button>
     </a>
 
-    {# 手动添加一条数据 #}
-    <input type="button" value="添加" onclick="popupFunc();" >
-    <script>
-    popupFunc = function () {
-        window.open("{% url 'project:'product_add %}", 'product_add', "status=1, height:300, width:300, toolbar=0, resizeable=1")
-    };
-    callback = function (city) {
-        var opt = document.createElement('option');
-        opt.innerText = city;
-        opt.setAttribute('selected', 'selected');
-        var selEle = document.getElementById('cityChoose');
-        selEle.appendChild(opt);
-    }
-    </script>
+    {# 手动添加一条数据，按钮触发模态框 #}
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">添加</button>
+    {# 模态框（Modal） #}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">添加产品</h4>
+				</div>
+
+				<div class="modal-body">
+					<form method="post" class="form-horizontal" role="form" action="{% url 'project:product_add' %}">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="pd_model" class="col-sm-3 control-label">产品型号</label>
+							<div class="col-sm-9">
+								<input type="text" id="pd_model" name="pd_model" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="pd_model" class="col-sm-3 control-label">产品类型</label>
+							<div class="col-sm-9">
+								<input type="text" id="pd_type" name="pd_type" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="pd_model" class="col-sm-3 control-label">产品名称</label>
+							<div class="col-sm-9">
+								<input type="text" id="pd_name" name="pd_name" class="form-control">
+							</div>
+						</div>
+
+						<div class="text-right">
+							<button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
+							<button type="submit" class="btn btn-primary" >确定</button>
+						</div>
+					</form>
+				</div>
+		    </div>
+		</div>
+	</div>
 
     {# 显示当前页数据 #}
-    <TABLE border="1">
+    <table class="table table-hover table-bordered">
         <TR>
             <TH>序号</TH>
             <TH>产品型号</TH>
@@ -59,7 +90,7 @@
                 </TD>
             </TR>
         {% endfor%}
-    </TABLE>
+    </table>
 
     {{wrong}}
 
@@ -78,7 +109,7 @@
             {% for pg in product_date.paginator.page_range %}
                 {% if product_date.number == pg %}
                     <li class="active">
-                        <b><a href="?page={{pg}}">{{pg}}</a></b>
+                        <a href="?page={{pg}}">{{pg}}</a>
                     </li>
                 {% else %}
                     <li>
