@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery-2.1.1/jquery.min.js' %}"></script>
+	<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type='text/css'>
+    .top{
+        height:100px;
+        position:absolute;
+        top:0px;
+        left:0px;
+        right:0px;
+        background-color:orange;
+        }
+    .left{
+        position:absolute;
+        top:100px;
+        left:0px;
+        bottom:50px;
+        width:200px;
+        background-color:#D0D0D0;
+        }
+    .rightup{
+        position:absolute;
+        top:100px;
+        left:200px;
+        right:0px;
+        bottom:600px;
+        background-color:#00CCFF;
+        }
+    .right{
+        position:absolute;
+        top:150px;
+        left:200px;
+        right:0px;
+        bottom:50px;
+        background-color:white;
+        }
+    .bottom{
+        position:absolute;
+        left:0px;
+        right:0px;
+        bottom:0px;
+        height:73px;
+        background-color:#84AF9B;
+        }
+    .inner{
+        min-height:100px;
+        }
+
+	</style>
+</head>
+<body>
+
+
+        <div class="top"><p>项目管理系统</p></div>
+		<div class="left">
+            <p>系统管理</p>
+            <a href="{% url 'system:user' %}">用户管理</a><br>
+            <a href="{% url 'system:role' %}">角色管理</a><br>
+            <a href="{% url 'system:base' %}">基础数据</a><br>
+
+            <p>项目管理</p>
+            <a href="{% url 'project:product' %}">产品维护</a><br>
+            <a href="{% url 'project:project' %}">项目维护</a><br>
+            <a href="{% url 'project:task' %}">任务维护</a><br>
+            <a href="{% url 'project:vision' %}">版本维护</a><br>
+            <a href="{% url 'project:progress' %}">进度维护</a><br>
+        </div>
+
+		<div class="rightup">
+            <div class="inner">
+                {% block one %}
+                {% endblock one %}
+            </div>
+        </div>
+
+		<div class="right">
+            <div class="inner">
+                {% block two %}
+                {% endblock two %}
+            </div>
+        </div>
+
+		<div class="bottom"></div>
+
+
+</body>
+</html>

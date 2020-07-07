@@ -1,30 +1,24 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>产品管理</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery-2.1.1/jquery.min.js' %}"></script>
-	<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
+{% extends 'login/base.html' %}
+    {% block one %}
     {# 导入数据 #}
-    <form action="" method="post" enctype="multipart/form-data">
+
+    <form action="" method="post" enctype="multipart/form-data" role="form">
         {% csrf_token %}
-        <input type="file" name="product_file" required >
-        <input type="submit" value="导入数据" >
+        <div class="form-group">
+        <input type="file" name="product_file" required style="display:inline-block;float: right;">
+        <button type="submit" class="btn btn-primary" style="display:inline-block;float: right;">导入数据</button>
+        </div>
     </form>
 
     {# 导出数据 #}
     <a href="{% url 'project:download' %}">
-        <button class="btn btn-primary btn-lg" type="button" >导出数据</button>
+        <button class="btn btn-primary" type="button" style="display:inline-block;float: right;">导出数据</button>
     </a>
 
+
     {# 手动添加一条数据，按钮触发模态框 #}
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">添加</button>
+
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="display:inline-block;float: left;">添加</button>
     {# 模态框（Modal） #}
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -67,7 +61,10 @@
 		    </div>
 		</div>
 	</div>
+    {% endblock one %}
 
+
+    {% block two %}
     {# 显示当前页数据 #}
     <table class="table table-hover table-bordered">
         <TR>
@@ -79,7 +76,7 @@
         </TR>
         {% for product in product_date %}
             <TR>
-                <TD>{{forloop.counter}}</TD>
+                <TD>{{forloop.counter|add:start}}</TD>
                 <TD>{{product.pd_model}}</TD>
                 <TD>{{product.pd_type}}</TD>
                 <TD>{{product.pd_name}}</TD>
@@ -128,5 +125,4 @@
             {% endif %}
         </ul>
     </nav>
-</body>
-</html>
+    {% endblock two %}

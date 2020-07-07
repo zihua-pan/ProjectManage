@@ -8,34 +8,9 @@ from django.db import transaction
 # Create your views here.
 
 
-'''
-def paginate_template(self):
-    total_date = self.objects.count()  # 获取数据总量
-    show_date = []
-    if total_date == 0:
-        context = {
-            'show_date': '暂无数据',
-        }
-    else:
-        va, remain = divmod(total_date, 10)
-        if remain:
-            va += 1  # 如果有余数，页数加1
-        if va == 1:  # 只有一页，显示所有数据
-            show_date = self.objects.all()
-        else:
-            for i in range(0, va):
-                if i < va - 1:  # 如果不是最后一页
-                    show_date.append(self.objects.all()[i * 10:10 * i + 9])
-                else:  # 最后一页数据
-                    show_date.append(self.objects.all()[va * 10:])
-        context = {'show_date': show_date}
-    return context
-
-'''
-
 def product(request):
     del_id = request.GET.get('del_id')
-    page = request.GET.get('page')
+    page = request.GET.get('page', 1)
 
     #删除数据
     if del_id:
@@ -46,8 +21,10 @@ def product(request):
     else:
         # 分页
         product_list = Product.objects.all()
-        # 按每页10条数据分页
-        paginator = Paginator(product_list, 10)
+        # 按每页count_page条数据分页
+        count_page =10
+        paginator = Paginator(product_list, count_page)
+        start = (int(page)-1)*count_page
         try:
             product_date = paginator.page(page)
         # 显示第一页,传入page的值为None或空
@@ -56,7 +33,10 @@ def product(request):
         # 传入page值不在有效范围
         except EmptyPage:
             product_date = paginator.page(paginator.num_pages)
-        context = {'product_date': product_date}
+        context = {
+            'product_date': product_date,
+            'start': start
+        }
 
     #导入数据
     if request.method == 'POST':

@@ -24,3 +24,7 @@ def login(request):
 
 def homepage(request):
     return render(request, 'login/homepage.html')
+
+
+def test(request):
+    return render(request, 'login/test.html')
