@@ -1,3 +1,7 @@
+from io import BytesIO
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q, F
+from django.http import HttpResponse
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -7,36 +11,37 @@ from django.db import transaction
 
 # Create your views here.
 
-
 def product(request):
-    del_id = request.GET.get('del_id')
+    del_id = request.GET.get('del_id','')
     page = request.GET.get('page', 1)
-
-    #删除数据
-    if del_id:
+    search_data = request.GET.get('search', '')
+    if del_id:     #删除数据
         Product.objects.get(id=del_id).delete()
         #删完数据重定向到当前页
         red_path = '?page='+str(page)
         return HttpResponseRedirect(reverse('project:product')+red_path)
+    if search_data:   #模糊查询
+        product_list = Product.objects.filter(
+            Q(pd_model__contains=search_data)|Q(pd_type__contains=search_data)|Q(pd_name__contains=search_data)
+        )
     else:
-        # 分页
-        product_list = Product.objects.all()
-        # 按每页count_page条数据分页
-        count_page =10
-        paginator = Paginator(product_list, count_page)
-        start = (int(page)-1)*count_page
-        try:
-            product_date = paginator.page(page)
-        # 显示第一页,传入page的值为None或空
-        except PageNotAnInteger:
-            product_date = paginator.page(1)
-        # 传入page值不在有效范围
-        except EmptyPage:
-            product_date = paginator.page(paginator.num_pages)
-        context = {
-            'product_date': product_date,
-            'start': start
-        }
+        product_list = Product.objects.all()    #查询全部数据
+    count_page =10    # 按每页count_page条数据分页
+    paginator = Paginator(product_list, count_page)
+    start = (int(page)-1)*count_page
+    try:
+        product_data = paginator.page(page)
+    # 显示第一页,传入page的值为None或空，默认为1
+    except PageNotAnInteger:
+        product_data = paginator.page(1)
+    # 传入page值不在有效范围
+    except EmptyPage:
+        product_data = paginator.page(paginator.num_pages)
+    context = {
+        'product_data': product_data,
+        'start': start,
+        'search_data': search_data,
+    }
 
     #导入数据
     if request.method == 'POST':
@@ -68,7 +73,9 @@ def product(request):
 #导出产品数据
 def download(request):
     data_table = []
+    #获取数据，排序
     product_set = list(Product.objects.all().order_by('id'))
+    #遍历数据写入excel文件
     for item in product_set:
         data_table.append([item.pd_model, item.pd_type, item.pd_name])
     workbook = xlwt.Workbook(encoding='utf-8')
@@ -82,8 +89,13 @@ def download(request):
         worksheet.write(i,1,data[1])
         worksheet.write(i,2,data[2])
         i += 1
-    workbook.save(r'C:\Users\Master\Desktop\test.xlsx')
-    return render(request, 'project/task.html')
+    sio = BytesIO()
+    workbook.save(sio)
+    sio.seek(0)
+    response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=test.xls'
+    response.write(sio.getvalue())
+    return response
 
 
 

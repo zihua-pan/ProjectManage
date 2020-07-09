@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b2f2a2-1860-4df2-b787-057cb545f4b3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/login/templates/login/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/templates/login/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/product.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/views.py" afterDir="false" />
     </list>
