@@ -2,23 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b2f2a2-1860-4df2-b787-057cb545f4b3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ProjectManagementSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProjectManagementSystem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/login/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/product.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/system/role.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/system/role.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="ProjectManagementSystem" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -38,8 +53,8 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../django project/mysite" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
+    <property name="last_opened_file_path" value="E:/py3.8.1" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -75,10 +90,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="65" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593353544631">
+    <state x="223" y="45" width="1089" height="779" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594424098176">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="65" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1593353544631" />
+    <state x="223" y="45" width="1089" height="779" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1594424098176" />
     <state x="473" y="209" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589980180166">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -87,22 +102,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="359" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593877619316" />
-    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog" timestamp="1593614083133">
+    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog" timestamp="1594730796913">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog/0.0.1536.824@0.0.1536.824" timestamp="1593614083133" />
-    <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog" timestamp="1589897809749">
+    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog/0.0.1536.824@0.0.1536.824" timestamp="1594730796913" />
+    <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog" timestamp="1594730346286">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589897809749" />
-    <state x="499" y="115" key="FileChooserDialogImpl" timestamp="1593530634509">
+    <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog/0.0.1536.824@0.0.1536.824" timestamp="1594730346286" />
+    <state x="543" y="175" key="DBNavigator.ResultSetRecordViewerDialog" timestamp="1594827872612">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="115" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593530634509" />
-    <state x="157" y="0" key="SettingsEditor" timestamp="1593851278451">
+    <state x="543" y="175" key="DBNavigator.ResultSetRecordViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1594827872612" />
+    <state x="499" y="115" key="FileChooserDialogImpl" timestamp="1594816960311">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="157" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593851278451" />
+    <state x="499" y="115" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1594816960311" />
+    <state x="157" y="0" key="SettingsEditor" timestamp="1594818151592">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="157" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1594818151592" />
+    <state width="315" height="160" key="TextEditor.password" timestamp="1594828029731">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="315" height="160" key="TextEditor.password/0.0.1536.824@0.0.1536.824" timestamp="1594828029731" />
+    <state x="534" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594430270275">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="534" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1594430270275" />
     <state x="539" y="315" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593877651252">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -111,5 +138,15 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="347" y="-1" width="840" height="1034" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1593861148662" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://E:/Python3.7.4/Lib/site-packages/django/contrib/auth/decorators.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

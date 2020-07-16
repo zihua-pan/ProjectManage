@@ -11,10 +11,15 @@ from django.db import transaction
 
 # Create your views here.
 
+
+@login_required
 def product(request):
     del_id = request.GET.get('del_id','')
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
+    print('3================3')
+    print(request.user)
+    print('3=================3')
     if del_id:     #删除数据
         Product.objects.get(id=del_id).delete()
         #删完数据重定向到当前页
