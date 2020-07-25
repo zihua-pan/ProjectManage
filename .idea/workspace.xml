@@ -2,24 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b2f2a2-1860-4df2-b787-057cb545f4b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ProjectManagementSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProjectManagementSystem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/login/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/login/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/templates/login/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/project/progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/progress.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/project/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/project.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/project/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/task.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/project/vision.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/vision.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/system/base.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/system/templates/system/role.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/system/role.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/system/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/system/user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +63,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="E:/py3.8.1" />
+    <property name="last_opened_file_path" value="E:/firefox donload/ProjectManage-master" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -102,22 +112,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="359" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593877619316" />
-    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog" timestamp="1594730796913">
+    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog" timestamp="1595639947266">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog/0.0.1536.824@0.0.1536.824" timestamp="1594730796913" />
-    <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog" timestamp="1594730346286">
+    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog/0.0.1536.824@0.0.1536.824" timestamp="1595639947266" />
+    <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog" timestamp="1595639589077">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog/0.0.1536.824@0.0.1536.824" timestamp="1594730346286" />
+    <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog/0.0.1536.824@0.0.1536.824" timestamp="1595639589077" />
     <state x="543" y="175" key="DBNavigator.ResultSetRecordViewerDialog" timestamp="1594827872612">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="543" y="175" key="DBNavigator.ResultSetRecordViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1594827872612" />
-    <state x="499" y="115" key="FileChooserDialogImpl" timestamp="1594816960311">
+    <state x="499" y="115" key="FileChooserDialogImpl" timestamp="1594991065078">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="115" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1594816960311" />
+    <state x="499" y="115" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1594991065078" />
     <state x="157" y="0" key="SettingsEditor" timestamp="1594818151592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -126,6 +136,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="315" height="160" key="TextEditor.password/0.0.1536.824@0.0.1536.824" timestamp="1594828029731" />
+    <state width="200" height="160" key="TextEditor.username" timestamp="1595254173520">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="200" height="160" key="TextEditor.username/0.0.1536.824@0.0.1536.824" timestamp="1595254173520" />
     <state x="534" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594430270275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -145,6 +159,11 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://E:/Python3.7.4/Lib/site-packages/django/contrib/auth/decorators.py</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://E:/py3.8.1/Lib/site-packages/django/db/models/base.py</url>
+          <line>1444</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

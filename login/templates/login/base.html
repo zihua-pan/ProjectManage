@@ -66,39 +66,44 @@
 <body>
 
 
-        <div class="top"><p>项目管理系统</p></div>
+        <div class="top">
+            <p><font size="6">项目管理系统</font></p>
+            <p align="right"><font size="4">你好{{username}}</font></p>
+        </div>
+
 		<div class="left">
-            <p>系统管理</p>
+            <font size="5">
+                <p>系统管理</p>
             <a href="{% url 'system:user' %}">用户管理</a><br>
             <a href="{% url 'system:role' %}">角色管理</a><br>
-            <a href="{% url 'system:base' %}">基础数据</a><br>
 
             <p>项目管理</p>
-            <a href="{% url 'project:product' %}">产品维护</a><br>
-            <a href="{% url 'project:project' %}">项目维护</a><br>
-            <a href="{% url 'project:task' %}">任务维护</a><br>
-            <a href="{% url 'project:vision' %}">版本维护</a><br>
-            <a href="{% url 'project:progress' %}">进度维护</a><br>
+                <a href="{% url 'project:project' %}">项目维护</a><br>
+                <a href="{% url 'project:product' %}">产品维护</a><br>
+                <a href="{% url 'project:task' %}">任务维护</a><br>
+                <a href="{% url 'project:vision' %}">版本维护</a><br>
+                <a href="{% url 'project:progress' %}">进度维护</a><br>
+            </font>
         </div>
 
 		<div class="rightup">
             <div class="inner">
-                {% block one %}
-                {% endblock one %}
+                {% block rightup %}
+                {% endblock rightup %}
             </div>
         </div>
 
 		<div class="right">
             <div class="inner">
-                {% block two %}
-                {% endblock two %}
+                {% block right %}
+                {% endblock right %}
             </div>
         </div>
 
         <div class="rightdown">
             <div class="inner">
-                {% block three %}
-                {% endblock three %}
+                {% block rightdown %}
+                {% endblock rightdown %}
             </div>
         </div>
 

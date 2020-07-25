@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
-</head>
-<body>
-    <TABLE border="1">
+{% extends 'login/base.html' %}
+    {% block right %}
+    <TABLE class="table table-hover table-bordered">
         <TR>
-            <TD>任务单号</TD>
-            <TD>项目编号名称</TD>
-            <TD>日期</TD>
-            <TD>产品型号</TD>
-            <TD>执行人</TD>
-            <TD>工时</TD>
-            <TD>开发记录</TD>
-            <TD>操作</TD>
+            <th>任务单号</th>
+            <th>项目编号名称</th>
+            <th>日期</th>
+            <th>产品型号</th>
+            <th>执行人</th>
+            <th>工时</th>
+            <th>开发记录</th>
+            <th>操作</th>
         </TR>
 
         {% for progress in progressset %}
@@ -34,5 +25,4 @@
         {% endfor%}
     </TABLE>
     {{wrong}}
-</body>
-</html>
+    {% endblock right %}

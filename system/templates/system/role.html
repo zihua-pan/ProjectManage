@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Role</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
-</head>
-<body>
-    <TABLE border="1">
+{% extends 'login/base.html' %}
+    {% block right %}
+    <TABLE class="table table-hover table-bordered">
         <TR>
             <TH>编号</TH>
             <TH>角色名</TH>
@@ -21,8 +12,8 @@
             <TD>1</TD>
             <TD>管理员</TD>
             <TD>
-                {% for mg in mg_user %}
-                    {{mg.username}}&nbsp
+                {% for admin in admin_set %}
+                    {{admin.first_name}}&nbsp;
                 {% endfor %}
             </TD>
             <TD></TD>
@@ -31,8 +22,8 @@
         <TR>
             <TD>2</TD>
             <TD>组长</TD>
-            <TD>{% for gl in gl_user %}
-                    {{gl.username}}&nbsp
+            <TD>{% for leader in leader_set %}
+                    {{leader.first_name}}&nbsp;
                 {% endfor %}
             </TD>
             <TD></TD>
@@ -42,8 +33,8 @@
             <TD>3</TD>
             <TD>组员</TD>
             <TD>
-                {% for mb in mb_user %}
-                    {{mb.username}}&nbsp
+                {% for member in member_set %}
+                    {{member.first_name}}&nbsp;
                 {% endfor %}
             </TD>
             <TD></TD>
@@ -51,5 +42,4 @@
 
     </TABLE>
     {{wrong}}
-</body>
-</html>
+    {% endblock right %}

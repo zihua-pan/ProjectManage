@@ -1,38 +1,28 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>任务管理</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
-</head>
-<body>
-    <TABLE border="1">
+{% extends 'login/base.html' %}
+    {% block right %}
+    <TABLE class="table table-hover table-bordered">
         <TR>
-            <TD>任务单号</TD>
-            <TD>产品型号</TD>
-            <TD>项目编号名称</TD>
-            <TD>开发类型</TD>
-            <TD>开始时间</TD>
-            <TD>结束时间</TD>
-            <TD>任务状态</TD>
-            <TD>操作</TD>
+            <th>任务单号</th>
+            <th>产品型号</th>
+            <th>项目编号名称</th>
+            <th>开发类型</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>任务状态</th>
+            <th>操作</th>
         </TR>
 
         {% for task in taskset %}
             <TR>
-                <TD>{{task.t_num}}</TD>
-                <TD>{{task.pj_num_name}}</TD>
-                <TD>{{task.pd_model}}</TD>
-                <TD>{{task.dev_type}}</TD>
-                <TD>{{task.s_time}}</TD>
-                <TD>{{task.e_time}}</TD>
-                <TD>{{task.t_status}}</TD>
+                <th>{{task.t_num}}</th>
+                <th>{{task.pj_num_name}}</th>
+                <th>{{task.pd_model}}</th>
+                <th>{{task.dev_type}}</th>
+                <th>{{task.s_time}}</th>
+                <th>{{task.e_time}}</th>
+                <th>{{task.t_status}}</th>
             </TR>
         {% endfor%}
     </TABLE>
     {{wrong}}
-</body>
-</html>
+    {% endblock right %}

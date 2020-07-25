@@ -17,9 +17,6 @@ def product(request):
     del_id = request.GET.get('del_id','')
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
-    print('3================3')
-    print(request.user)
-    print('3=================3')
     if del_id:     #删除数据
         Product.objects.get(id=del_id).delete()
         #删完数据重定向到当前页
@@ -46,9 +43,10 @@ def product(request):
         'product_data': product_data,
         'start': start,
         'search_data': search_data,
+        'username': request.user,
     }
 
-    #导入数据
+    # 导入数据
     if request.method == 'POST':
         product_file = request.FILES.get('product_file')
         file_type = product_file.name.split('.')[1]
@@ -75,10 +73,10 @@ def product(request):
             print('上传文件类型错误！')
     return render(request, 'project/product.html', context)
 
-#导出产品数据
+# 导出产品数据
 def download(request):
     data_table = []
-    #获取数据，排序
+    # 获取数据，排序
     product_set = list(Product.objects.all().order_by('id'))
     #遍历数据写入excel文件
     for item in product_set:

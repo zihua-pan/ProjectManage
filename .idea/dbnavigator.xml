@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="72df1828-05f1-48a8-9d84-737222013539">
-        <schema name="main" object-types="table, constraint, column, index, dataset trigger, view" />
+        <schema name="main" object-types="index, view, column, constraint, table, dataset trigger" />
       </connection>
     </loaded-nodes>
   </component>
@@ -37,6 +37,7 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
       <object connection-id="72df1828-05f1-48a8-9d84-737222013539" object-ref="schemas/main/tables/login_user" />
+      <object connection-id="72df1828-05f1-48a8-9d84-737222013539" object-ref="schemas/main/tables/login_user_groups" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
@@ -45,12 +46,19 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.login_user" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.django_migrations" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.login_user_user_permissions" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.auth_group" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.auth_group_permissions" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.login_user_groups" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_progress" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.django_content_type" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_department_projects" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.django_session" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_task" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.login_user_user_permissions" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_product" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.auth_group" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.login_user_groups" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_vision" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_project" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_department" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.auth_permission" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">

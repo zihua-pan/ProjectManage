@@ -1,36 +1,31 @@
+from django.contrib.auth.models import Group
 from django.shortcuts import render
 from login.models import User
 
 # Create your views here.
 
 
+# 用户信息
 def user(request):
-    if User.objects.count() == 0:
+    if User.objects.count() == 0:  # 如果没有用户
         context = {
             'wrong': '暂无数据',
         }
     else:
-        #将所有数据打包成列表传递到前端
         context = {
-            'userset': list(User.objects.all()),
+            'userset': User.objects.all(),
         }
     return render(request, 'system/user.html', context)
 
 
+# 角色信息
 def role(request):
-    if User.objects.count() == 0:
-        context = {
-            'wrong': '暂无数据',
-        }
-    else:
-        #将不同角色数据打包成列表传到前端
-        context = {
-            'mg_user': list(User.objects.filter(role='管理员')),
-            'gl_user': list(User.objects.filter(role='组长')),
-            'mb_user': list(User.objects.filter(role='成员')),
-        }
+    admin_set = Group.objects.get(id=1).user_set.all()  # 所有管理员角色用户
+    leader_set = Group.objects.get(id=2).user_set.all()  # 所有组长角色用户
+    member_set = Group.objects.get(id=3).user_set.all()  # 所有组员角色用户
+    context = {
+        'admin_set': admin_set,
+        'leader_set': leader_set,
+        'member_set': member_set,
+    }
     return render(request, 'system/role.html', context)
-
-
-def base(request):
-    return render(request, 'system/base.html')

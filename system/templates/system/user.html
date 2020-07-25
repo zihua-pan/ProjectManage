@@ -1,37 +1,27 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
-</head>
-<body>
-    <TABLE border="1">
+{% extends 'login/base.html' %}
+    {% block right %}
+    <TABLE class="table table-hover table-bordered">
         <TR>
-            <TD>账号</TD>
-            <TD>姓名</TD>
-            <TD>区域</TD>
-            <TD>邮箱</TD>
-            <TD>创建时间</TD>
-            <TD>最后登录时间</TD>
-            <TD>操作</TD>
+            <th>账号</th>
+            <th>姓名</th>
+            <th>区域</th>
+            <th>邮箱</th>
+            <th>创建时间</th>
+            <th>最后登录时间</th>
+            <th>操作</th>
         </TR>
 
         {% for user in userset %}
             <TR>
-                <TD>{{user.account}}</TD>
                 <TD>{{user.username}}</TD>
+                <TD>{{user.first_name}}</TD>
                 <TD>{{user.area}}</TD>
                 <TD>{{user.email}}</TD>
-                <TD>{{user.create_time}}</TD>
-                <TD></TD>
+                <TD>{{user.date_joined}}</TD>
+                <TD>{{user.last_login}}</TD>
                 <TD></TD>
             </TR>
         {% endfor%}
     </TABLE>
     {{wrong}}
-</body>
-</html>
+    {% endblock right %}

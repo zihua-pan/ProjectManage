@@ -10,13 +10,9 @@ from .models import User
 # Create your views here.
 
 
-
-#登录界面
+# 登录界面
 def login(request):
     context = {}
-    print('1================1')
-    print(request.user)
-    print('1=================1')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -29,9 +25,6 @@ def login(request):
             #  if check_password(password, User.objects.get(username=username).password):  # 密码校验
             if user:
                 auth.login(request, user)
-                print('2================2')
-                print(request.user)
-                print('2=================2')
                 return render(request, 'login/homepage.html', context)
             else:
                 context = {'wrong': '密码不正确'}
@@ -41,6 +34,3 @@ def login(request):
 def homepage(request):
     return render(request, 'login/homepage.html')
 
-
-def test(request):
-    return render(request, 'login/test.html')

@@ -5,7 +5,13 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
+    area = models.CharField(max_length=20, verbose_name='地区')
+
+    class Meta:
+        verbose_name = '用户'
+        verbose_name_plural = '用户'
+        ordering = ['id']
+
 
 
 

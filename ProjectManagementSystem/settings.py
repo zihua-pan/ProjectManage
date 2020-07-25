@@ -119,6 +119,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+# 设置匿名用户跳转界面
 LOGIN_URL = '/login/'
 
 AUTH_USER_MODEL = 'login.User'
@@ -131,3 +132,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# 设置cookie时长
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_AGE=60*60*24
+
+# 设置为True，关闭浏览器cookie失效
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False

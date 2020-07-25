@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap-4.5.0/dist/js/bootstrap.min.js' %}"></script>
-</head>
-<body>
-    <TABLE border="1">
+{% extends 'login/base.html' %}
+    {% block right %}
+    <TABLE class="table table-hover table-bordered">
         <TR>
-            <TD>任务单号</TD>
-            <TD>项目编号名称</TD>
-            <TD>版本数</TD>
-            <TD>版本名称</TD>
-            <TD>执行人</TD>
-            <TD>开始时间</TD>
-            <TD>结束时间</TD>
-            <TD>操作</TD>
+            <th>任务单号</th>
+            <th>项目编号名称</th>
+            <th>版本数</th>
+            <th>版本名称</th>
+            <th>执行人</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>操作</th>
         </TR>
 
         {% for vision in visionset %}
@@ -36,5 +27,4 @@
         {% endfor%}
     </TABLE>
     {{wrong}}
-</body>
-</html>
+    {% endblock right %}
