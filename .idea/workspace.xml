@@ -1,36 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14b2f2a2-1860-4df2-b787-057cb545f4b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/project/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/project/progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/progress.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/project/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/project.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/project/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/project/vision.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/vision.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/templates/system/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/templates/system/role.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/system/role.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/templates/system/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/system/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/system/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="14b2f2a2-1860-4df2-b787-057cb545f4b3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
