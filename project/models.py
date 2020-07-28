@@ -41,7 +41,8 @@ class Product(models.Model):
         to_field='project_num',
         on_delete=models.CASCADE,
         related_name='project_to_product',
-        related_query_name='product_to_project',)
+        related_query_name='product_to_project',
+        verbose_name='所属项目',)
 
     class Meta:
         verbose_name = '产品'
@@ -67,7 +68,8 @@ class Task(models.Model):
         to_field='product_model',
         on_delete=models.CASCADE,
         related_name='product_to_task',
-        related_query_name='task_to_product', )
+        related_query_name='task_to_product',
+        verbose_name='所属产品',)
 
     class Meta:
         ordering = ['-task_num']
@@ -88,7 +90,8 @@ class Vision(models.Model):
         to_field='task_num',
         on_delete=models.CASCADE,
         related_name='task_to_vision',
-        related_query_name='vision_to_task', )
+        related_query_name='vision_to_task',
+        verbose_name='所属任务',)
 
     class Meta:
         ordering = ['vision_num']
@@ -108,10 +111,12 @@ class Progress(models.Model):
         to_field='task_num',
         on_delete=models.CASCADE,
         related_name='task_to_progress',
-        related_query_name='progress_to_task', )
+        related_query_name='progress_to_task',
+        verbose_name='所属任务',)
 
     class Meta:
         ordering = ['-data']
         unique_together = (('data', 'executor'),)  # 设置联合主键
         verbose_name = '进度'
         verbose_name_plural = '进度'
+
