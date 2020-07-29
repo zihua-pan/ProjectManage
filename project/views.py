@@ -17,11 +17,11 @@ from django.db import transaction
 # 产品视图
 @login_required
 def product(request):
-    del_id = request.GET.get('del_id','')
+    del_id = request.GET.get('del_id', '')
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
     if del_id:     # 删除数据
-        Product.objects.get(id=del_id).delete()
+        Product.objects.get(product_model=del_id).delete()
         # 删完数据重定向到当前页
         red_path = '?page='+str(page)
         return HttpResponseRedirect(reverse('project:product')+red_path)
@@ -88,6 +88,36 @@ def download_product(request):
     return response
 
 
+# 添加一条产品数据
+def product_add(request):
+    if request.method == 'GET':
+        return render(request, 'project/product.html')
+
+    if request.method == 'POST':
+        project_num = request.POST.get('project_num')
+        product_model = request.POST.get('product_model')
+        product_type = request.POST.get('product_type')
+        product_name = request.POST.get('product_name')
+        context = {}
+        try:
+            projects = Project.objects.get(project_num=project_num)  # 判断项目是否存在
+        except Project.DoesNotExist:
+            context['wrong'] = '该项目不存在'
+        else:
+            try:
+                Product.objects.get(product_model=product_model)  # 判断产品型号是否存在
+            except Product.DoesNotExist:
+                Product.objects.create(
+                    projects=projects,
+                    product_model=product_model,
+                    product_type=product_type,
+                    product_name=product_name,)
+                return HttpResponseRedirect(reverse('project:product'))
+            else:
+                context = {'wrong': '产品型号已存在'}
+        return render(request, 'project/product.html', context)
+
+
 
 
 
@@ -139,25 +169,6 @@ def progress(request):
     return render(request, 'project/progress.html', context)
 
 
-# 添加一条产品数据
-def product_add(request):
-    if request.method == 'GET':
-        return render(request, 'project/product.html')
-
-    if request.method == 'POST':
-        pd_model = request.POST.get('pd_model')
-        pd_type = request.POST.get('pd_type')
-        pd_name = request.POST.get('pd_name')
-        context = {}
-        try:
-            #判断产品型号是否存在
-            Product.objects.get(pd_model=pd_model)
-            #产品型号不存在
-        except Product.DoesNotExist:
-            Product.objects.create(pd_model=pd_model, pd_type=pd_type, pd_name=pd_name)
-        else:
-            context = {'wrong': '产品型号已存在'}
-        return render(request, 'project/product.html', context)
 
 
 

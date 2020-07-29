@@ -21,8 +21,7 @@ class Department(models.Model):
     department_name = models.CharField(max_length=20, unique=True, primary_key=True, verbose_name='事业部')
     projects = models.ManyToManyField(
         Project,
-        related_name='project_to_department',
-        related_query_name='department_to_project',
+        related_name='to_department',
         verbose_name='项目编号',)
 
     class Meta:
@@ -40,13 +39,13 @@ class Product(models.Model):
         Project,
         to_field='project_num',
         on_delete=models.CASCADE,
-        related_name='project_to_product',
-        related_query_name='product_to_project',
+        related_name='to_product',
         verbose_name='所属项目',)
 
     class Meta:
         verbose_name = '产品'
         verbose_name_plural = '产品'
+        ordering = ['-create_time']
 
 
 # 任务表
@@ -67,8 +66,7 @@ class Task(models.Model):
         Product,
         to_field='product_model',
         on_delete=models.CASCADE,
-        related_name='product_to_task',
-        related_query_name='task_to_product',
+        related_name='to_task',
         verbose_name='所属产品',)
 
     class Meta:
@@ -89,8 +87,7 @@ class Vision(models.Model):
         Task,
         to_field='task_num',
         on_delete=models.CASCADE,
-        related_name='task_to_vision',
-        related_query_name='vision_to_task',
+        related_name='to_vision',
         verbose_name='所属任务',)
 
     class Meta:
@@ -110,8 +107,7 @@ class Progress(models.Model):
         Task,
         to_field='task_num',
         on_delete=models.CASCADE,
-        related_name='task_to_progress',
-        related_query_name='progress_to_task',
+        related_name='to_progress',
         verbose_name='所属任务',)
 
     class Meta:
