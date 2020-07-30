@@ -14,7 +14,7 @@
     {# 搜索框 #}
     <form action="" method="get" role="form">
         <div class="form-group">
-        <input type="text" name="search" required style="display:inline-block;float:left;">
+        <input type="text" name="search" required style="display:inline-block;float:left;" placeholder="输入产品型号或名称">
         <button type="submit" class="btn btn-primary" style="display:inline-block;float:left;">查询</button>
         </div>
     </form>
@@ -86,8 +86,8 @@
             <th>序号</th>
             <th>所属项目</th>
             <th>产品型号</th>
-            <th>产品类型</th>
             <th>产品名称</th>
+            <th>产品类型</th>
             <th>操作</th>
         </TR>
         {% for product in product_data %}
@@ -95,22 +95,22 @@
                 <TD>{{forloop.counter|add:start}}</TD>
                 <td>{{product.projects.project_num}}</td>
                 <TD>{{product.product_model}}</TD>
-                <TD>{{product.product_type}}</TD>
                 <TD>{{product.product_name}}</TD>
+                <TD>{{product.product_type}}</TD>
                 <TD>
                     <a href="?page={{product_data.number}}&del_id={{product.product_model}}">
                         <button type="button" class="btn btn-danger btn-sm">删除</button>
                     </a>
 
-                     {# 手动修改一条数据，按钮触发模态框 #}
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#modify" style="display:inline-block;float: left;">修改</button>
-                    {# 模态框（Modal） #}
-                    <div class="modal fade" id="modify" tabindex="-1" role="dialog" aria-labelledby="myModify" aria-hidden="true">
+                     {# 手动修改一条数据，按钮触发模态框  同一页面模态框id、target值不能一样 #}
+                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{product.product_model}}" style="display:inline-block;float: left;">修改</button>
+                    {# 模态框 #}
+                    <div class="modal fade" id="{{product.product_model}}" tabindex="-1" role="dialog" aria-labelledby="{{forloop.counter|add:start}}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModify">修改产品</h4>
+                                    <h4 class="modal-title" id="{{forloop.counter|add:start}}">修改产品</h4>
                                 </div>
 
                                 <div class="modal-body">
@@ -120,28 +120,32 @@
                                         <div class="form-group">
                                             <label for="modify_num" class="col-sm-3 control-label">所属项目</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_num" name="project_num" class="form-control" required>
+                                                <input type="text" id="modify_num" name="project_num" class="form-control"
+                                                       required value="{{product.projects.project_num}}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="modify_model" class="col-sm-3 control-label">产品型号</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_model" name="product_model" class="form-control" required>
+                                                <input type="text" id="modify_model" name="product_model" class="form-control"
+                                                       required value="{{product.product_model}}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="modify_type" class="col-sm-3 control-label">产品类型</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_type" name="product_type" class="form-control" required>
+                                                <input type="text" id="modify_type" name="product_type" class="form-control"
+                                                       required value="{{product.product_type}}">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="modify_name" class="col-sm-3 control-label">产品名称</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_name" name="product_name" class="form-control" required>
+                                                <input type="text" id="modify_name" name="product_name" class="form-control"
+                                                       value="{{product.product_name}}" required>
                                             </div>
                                         </div>
 

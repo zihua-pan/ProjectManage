@@ -27,7 +27,7 @@ def product(request):
         return HttpResponseRedirect(reverse('project:product')+red_path)
     if search_data:   # 模糊查询
         product_list = Product.objects.filter(
-            Q(pd_model__contains=search_data)|Q(pd_type__contains=search_data)|Q(pd_name__contains=search_data)
+            Q(product_model__contains=search_data)|Q(product_name__contains=search_data)
         )
     else:
         product_list = Product.objects.all()    # 查询全部数据
@@ -118,18 +118,54 @@ def product_add(request):
         return render(request, 'project/product.html', context)
 
 
-
-
-
-def project(request):
-    if Project.objects.count() == 0:
-        context = {
-            'wrong': '暂无数据',
-        }
+# 修改产品数据
+def product_modify(request):
+    product_model = request.POST.get('product_model')
+    product_type = request.POST.get('product_type')
+    product_name = request.POST.get('product_name')
+    try:
+        pd = Product.objects.get(product_model=product_model)
+    except Product.DoesNotExist:
+        return HttpResponse('产品不存在')
     else:
-        context = {
-            'projectset': list(Project.objects.all()),
-        }
+        pd.product_type = product_type
+        pd.product_name = product_name
+        pd.save()
+        return HttpResponseRedirect(reverse('project:product'))
+
+
+
+# 项目视图
+def project(request):
+    del_id = request.GET.get('del_id', '')
+    page = request.GET.get('page', 1)
+    search_data = request.GET.get('search', '')
+    if del_id:  # 删除数据
+        Project.objects.get(product_model=del_id).delete()
+        # 删完数据重定向到当前页
+        red_path = '?page=' + str(page)
+        return HttpResponseRedirect(reverse('project:project') + red_path)
+    if search_data:  # 根据项目编号或名称查询
+        project_list = Project.objects.filter(
+            Q(project_num__contains=search_data) | Q(project_name__contains=search_data)
+        )
+    else:
+        project_list = Project.objects.all()  # 查询全部数据
+    count_page = 10     # 按每页count_page条数据分页
+    paginator = Paginator(project_list, count_page)
+    start = (int(page) - 1) * count_page  # 每页起始数据编号
+    try:
+        project_data = paginator.page(page)
+    except PageNotAnInteger:  # 显示第一页,传入page的值为None或空，默认为1
+        project_data = paginator.page(1)
+    except EmptyPage:           # 传入page值不在有效范围
+        project_data = paginator.page(paginator.num_pages)
+    context = {
+        'project_data': project_data,
+        'start': start,
+        'search_data': search_data,
+        'username': request.user,
+    }
     return render(request, 'project/project.html', context)
 
 
@@ -169,8 +205,14 @@ def progress(request):
     return render(request, 'project/progress.html', context)
 
 
+# 项目数据导出
+def project_download():
+    return None
 
+# 修改项目数据
+def project_modify():
+    return None
 
-
-
-
+# 添加项目数据
+def project_add():
+    return None
