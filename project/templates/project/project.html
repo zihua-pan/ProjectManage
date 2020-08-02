@@ -3,7 +3,7 @@
 {% block rightup %}
     {# 导入数据 #}
 
-    <form action="" method="post" enctype="multipart/form-data" role="form">
+    <form action="{% url 'project:project_import'%}" method="post" enctype="multipart/form-data" role="form">
         {% csrf_token %}
         <div class="form-group">
         <input type="file" name="project_file" required style="display:inline-block;float: right;">
@@ -14,7 +14,7 @@
     {# 搜索框 #}
     <form action="" method="get" role="form">
         <div class="form-group">
-        <input type="text" name="search" required style="display:inline-block;float:left;">
+        <input type="text" name="search" required style="display:inline-block;float:left;" placeholder="输入项目编号或名称">
         <button type="submit" class="btn btn-primary" style="display:inline-block;float:left;">查询</button>
         </div>
     </form>
@@ -59,6 +59,13 @@
 							</div>
 						</div>
 
+                         <div class="form-group">
+                            <label for="department" class="col-sm-3 control-label">所属事业部</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="department" name="department" class="form-control" required>
+                            </div>
+                        </div>
+
 						<div class="text-right">
 							<button type="button" class="btn btn-close" data-dismiss="modal">关闭</button>
 							<button type="submit" class="btn btn-primary" >确定</button>
@@ -74,9 +81,9 @@
     {# 显示当前页数据 #}
     <TABLE class="table table-hover table-bordered">
         <TR>
+            <th>序号</th>
             <th>项目编号</th>
             <th>项目名称</th>
-            <th>产品型号</th>
             <th>项目经理</th>
             <th>所属事业部</th>
             <th>操作</th>
@@ -84,60 +91,78 @@
 
         {% for project in project_data %}
             <TR>
+                <TD>{{forloop.counter|add:start}}</TD>
                 <TD>{{project.project_num}}</TD>
                 <TD>{{project.project_name}}</TD>
-                <TD>{{project.to_product.all.0.product_model}}</TD>
                 <TD>{{project.project_manager}}</TD>
-                <TD>{{project.to_department.all}}</TD>
+                <TD>{{project.to_department.all.0.department_name}}</TD>
                 <td>
-                    <a href="?page={{product_data.number}}&del_id={{product.product_model}}">
-                        <button type="button" class="btn btn-danger btn-sm">删除</button>
-                    </a>
 
-                     {# 手动修改一条数据，按钮触发模态框  同一页面模态框id、target值不能一样 #}
-                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{product.product_model}}" style="display:inline-block;float: left;">修改</button>
-                    {# 模态框 #}
-                    <div class="modal fade" id="{{product.product_model}}" tabindex="-1" role="dialog" aria-labelledby="{{forloop.counter|add:start}}" aria-hidden="true">
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my{{project.project_num}}">删除</button>
+                    {# 模态框 删除 #}
+                    <div class="modal fade" id="my{{project.project_num}}" tabindex="-1" role="dialog" aria-labelledby="i{{project.project_num}}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="{{forloop.counter|add:start}}">修改产品</h4>
+                            <h4 class="modal-title" id="i{{project.project_num}}">删除项目</h4>
+                            </div>
+                            <div class="modal-body">确定删除该条数据？</div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <a href="?page={{project_data.number}}&del_id={{project.project_num}}">
+                                <button type="button" class="btn btn-danger btn-sm">删除</button>
+                            </a>
+                         </div>
+                      </div>
+                      </div>
+                      </div>
+
+
+                     {# 手动修改一条数据，按钮触发模态框  同一页面模态框id、target值不能一样 #}
+                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{project.project_num}}" style="display:inline-block;float: left;">修改</button>
+                    {# 模态框 修改 #}
+                    <div class="modal fade" id="{{project.project_num}}" tabindex="-1" role="dialog" aria-labelledby="my{{forloop.counter|add:start}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="my{{forloop.counter|add:start}}">修改项目</h4>
                                 </div>
 
                                 <div class="modal-body">
-                                    <form method="post" class="form-horizontal" role="form" action="{% url 'project:product_modify' %}">
+                                    <form method="post" class="form-horizontal" role="form" action="{% url 'project:project_modify' %}">
                                         {% csrf_token %}
 
                                         <div class="form-group">
-                                            <label for="modify_num" class="col-sm-3 control-label">所属项目</label>
+                                            <label for="modify_num" class="col-sm-3 control-label">项目编号</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="modify_num" name="project_num" class="form-control"
-                                                       required value="{{product.projects.project_num}}" readonly>
+                                                       required value="{{project.project_num}}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="modify_model" class="col-sm-3 control-label">产品型号</label>
+                                            <label for="modify_model" class="col-sm-3 control-label">项目名称</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_model" name="product_model" class="form-control"
-                                                       required value="{{product.product_model}}" readonly>
+                                                <input type="text" id="modify_model" name="project_name" class="form-control"
+                                                       required value="{{project.project_name}}">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="modify_type" class="col-sm-3 control-label">产品类型</label>
+                                            <label for="modify_manager" class="col-sm-3 control-label">项目经理</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_type" name="product_type" class="form-control"
-                                                       required value="{{product.product_type}}">
+                                                <input type="text" id="modify_manager" name="project_manager" class="form-control"
+                                                       value="{{project.project_manager}}" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="modify_name" class="col-sm-3 control-label">产品名称</label>
+                                            <label for="modify_department" class="col-sm-3 control-label">所属事业部</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_name" name="product_name" class="form-control"
-                                                       value="{{product.product_name}}" required>
+                                                <input type="text" id="modify_department" name="department" class="form-control"
+                                                       value="{{project.to_department.all.0.department_name}}" required>
                                             </div>
                                         </div>
 
@@ -152,6 +177,7 @@
                     </div>
                 </td>
             </TR>
+
         {% endfor%}
     </TABLE>
     {{wrong}}

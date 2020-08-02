@@ -1,9 +1,9 @@
 {% extends 'login/base.html' %}
 
     {% block rightup %}
-    {# 导入数据 #}
 
-    <form action="" method="post" enctype="multipart/form-data" role="form">
+    {# 导入数据 #}
+    <form action="{% url 'project:product_import'%}" method="post" enctype="multipart/form-data" role="form">
         {% csrf_token %}
         <div class="form-group">
         <input type="file" name="product_file" required style="display:inline-block;float: right;">
@@ -20,7 +20,7 @@
     </form>
 
     {# 导出数据 #}
-    <a href="{% url 'project:download_product' %}">
+    <a href="{% url 'project:product_download' %}">
         <button class="btn btn-primary" type="button" style="display:inline-block;float: right;">导出数据</button>
     </a>
 
@@ -98,9 +98,26 @@
                 <TD>{{product.product_name}}</TD>
                 <TD>{{product.product_type}}</TD>
                 <TD>
-                    <a href="?page={{product_data.number}}&del_id={{product.product_model}}">
-                        <button type="button" class="btn btn-danger btn-sm">删除</button>
-                    </a>
+
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my{{product.product_model}}">删除</button>
+                    {# 模态框 删除 #}
+                    <div class="modal fade" id="my{{product.product_model}}" tabindex="-1" role="dialog" aria-labelledby="{{product.product_model}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="i{{product.product_model}}">删除产品</h4>
+                            </div>
+                            <div class="modal-body">确定删除该条数据？</div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <a href="?page={{product_data.number}}&del_id={{product.product_model}}">
+                                <button type="button" class="btn btn-danger btn-sm">删除</button>
+                            </a>
+                         </div>
+                      </div>
+                      </div>
+                      </div>
 
                      {# 手动修改一条数据，按钮触发模态框  同一页面模态框id、target值不能一样 #}
                     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{product.product_model}}" style="display:inline-block;float: left;">修改</button>

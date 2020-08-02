@@ -1,7 +1,7 @@
 from datetime import datetime
 import xlrd
 import xlwt
-from django.db import transaction
+
 
 # 导出数据
 def export(mod):

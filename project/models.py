@@ -7,8 +7,8 @@ from django.utils import timezone
 # 项目表
 class Project(models.Model):
     project_num = models.CharField(max_length=30, unique=True, primary_key=True, verbose_name='项目编号')
-    project_name = models.CharField(max_length=30, unique=True, verbose_name='项目名称')
-    project_manager = models.CharField(max_length=20, unique=True, verbose_name='项目经理')
+    project_name = models.CharField(max_length=30, verbose_name='项目名称')
+    project_manager = models.CharField(max_length=20, verbose_name='项目经理')
     create_time = models.DateTimeField(auto_now_add=timezone.now, verbose_name='创建时间')
 
     class Meta:
@@ -32,8 +32,8 @@ class Department(models.Model):
 # 产品表
 class Product(models.Model):
     product_model = models.CharField(max_length=30, unique=True, primary_key=True, verbose_name='产品型号')
-    product_type = models.CharField(max_length=20, unique=True, verbose_name='产品类型')
-    product_name = models.CharField(max_length=30, unique=True, verbose_name='产品名称')
+    product_type = models.CharField(max_length=20, verbose_name='产品类型')
+    product_name = models.CharField(max_length=30, verbose_name='产品名称')
     create_time = models.DateTimeField(auto_now_add=timezone.now, verbose_name='创建时间')
     projects = models.ForeignKey(
         Project,
@@ -58,9 +58,9 @@ class Task(models.Model):
     )
     task_num = models.CharField(max_length=20, unique=True, primary_key=True, verbose_name='任务单号')
     dev_type = models.CharField(max_length=20, verbose_name='开发类型')
-    start_time = models.DateTimeField(blank=True, verbose_name='开始时间')
-    end_time = models.DateTimeField(blank=True, verbose_name='结束时间')
-    task_status = models.CharField(max_length=10, unique=True, choices=status_choice, verbose_name='任务状态')
+    start_time = models.DateTimeField(blank=True, null=True, verbose_name='开始时间')
+    end_time = models.DateTimeField(blank=True, null=True, verbose_name='结束时间')
+    task_status = models.CharField(max_length=10, choices=status_choice, verbose_name='任务状态')
     create_time = models.DateTimeField(auto_now_add=timezone.now, verbose_name='创建时间')
     products = models.ForeignKey(
         Product,
@@ -77,9 +77,9 @@ class Task(models.Model):
 
 # 版本表
 class Vision(models.Model):
-    vision_num = models.PositiveIntegerField(unique=True, verbose_name='版本数')
+    vision_num = models.PositiveIntegerField(verbose_name='版本数')
     vision_name = models.CharField(max_length=40,  primary_key=True, verbose_name='版本名称')
-    executor = models.CharField(max_length=20, unique=True, verbose_name='执行人')
+    executor = models.CharField(max_length=20, verbose_name='执行人')
     create_time = models.DateTimeField(auto_now_add=timezone.now, verbose_name='创建时间')
     start_time = models.DateTimeField(blank=True, verbose_name='开始时间')
     end_time = models.DateTimeField(blank=True, verbose_name='结束时间')
@@ -98,8 +98,8 @@ class Vision(models.Model):
 
 # 进度表
 class Progress(models.Model):
-    data = models.DateTimeField(unique=True, verbose_name='日期')
-    executor = models.CharField(max_length=20, unique=True, verbose_name='执行人')
+    data = models.DateTimeField(verbose_name='日期')
+    executor = models.CharField(max_length=20, verbose_name='执行人')
     hours = models.FloatField(unique=True, verbose_name='工时')
     record = models.TextField(unique=True, verbose_name='开发记录')
     create_time = models.DateTimeField(auto_now_add=timezone.now, verbose_name='创建时间')
@@ -112,7 +112,6 @@ class Progress(models.Model):
 
     class Meta:
         ordering = ['-data']
-        unique_together = (('data', 'executor'),)  # 设置联合主键
         verbose_name = '进度'
         verbose_name_plural = '进度'
 
