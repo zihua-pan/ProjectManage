@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/my_tools/my_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_tools/my_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/project/progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/progress.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/project.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/task.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/vision.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/vision.html" afterDir="false" />

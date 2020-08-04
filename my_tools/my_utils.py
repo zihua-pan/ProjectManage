@@ -30,3 +30,17 @@ def export(mod):
         row += 1
     return workbook
 
+
+# 导出模板
+def template(mod):
+    # 创建excel表
+    workbook = xlwt.Workbook(encoding='utf-8')
+    worksheet = workbook.add_sheet('MySheet')
+    # 遍历字段
+    num = 0
+    for item in mod._meta.fields:
+        worksheet.write(0, num, item.verbose_name)  # 获取字段verbose_name
+        num += 1
+    return workbook
+
+

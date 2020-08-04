@@ -1,4 +1,5 @@
 from io import BytesIO
+import xlwt
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, F
 from django.http import HttpResponse
@@ -6,7 +7,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from my_tools.my_utils import export
+from my_tools.my_utils import export, template
 from .models import *
 import xlrd
 from django.db import transaction
@@ -79,10 +80,16 @@ def project_import(request):
 
 
 
-# 项目数据导出
-def project_download(request):
+
+
+
+# 导出项目数据
+def project_download(request, model):
     sio = BytesIO()
-    export(Project).save(sio)
+    if model == 1:  # 模式1，导出数据
+        export(Project).save(sio)
+    elif model == 2:  # 模式2，导出模板
+        template(Project).save(sio)
     sio.seek(0)
     response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename=test.xlsx'
@@ -218,9 +225,12 @@ def product_import(request):
 
 
 # 导出产品数据
-def product_download(request):
+def product_download(request, model):
     sio = BytesIO()
-    export(Product).save(sio)
+    if model == 1:  # 模式1，导出数据
+        export(Product).save(sio)
+    elif model == 2:  # 模式2，导出模板
+        template(Product).save(sio)
     sio.seek(0)
     response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename=test.xlsx'
@@ -348,9 +358,12 @@ def task_import(request):
 
 
 # 导出任务数据
-def task_download(request):
+def task_download(request, model):
     sio = BytesIO()
-    export(task).save(sio)
+    if model == 1:  # 模式1，导出数据
+        export(Task).save(sio)
+    elif model == 2:  # 模式2，导出模板
+        template(Task).save(sio)
     sio.seek(0)
     response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename=test.xlsx'
@@ -482,9 +495,12 @@ def vision_import(request):
 
 
 # 导出版本数据
-def vision_download(request):
+def vision_download(request, model):
     sio = BytesIO()
-    export(vision).save(sio)
+    if model == 1:  # 模式1，导出数据
+        export(Vision).save(sio)
+    elif model == 2:  # 模式2，导出模板
+        template(Vision).save(sio)
     sio.seek(0)
     response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename=test.xlsx'
@@ -540,7 +556,141 @@ def vision_modify(request):
 
 
 
+# 进度视图
+@login_required
+def progress(request):
+    del_id = request.GET.get('del_id', '')
+    page = request.GET.get('page', 1)
+    search_data = request.GET.get('search', '')
+    if del_id:     # 删除数据
+        Progress.objects.get(id=del_id).delete()
+        # 删完数据重定向到当前页
+        red_path = '?page='+str(page)
+        return HttpResponseRedirect(reverse('project:progress')+red_path)
+    if search_data:   # 模糊查询
+        progress_list = Task.objects.get(task_num=search_data).to_progress.all()
+    else:
+        progress_list = Progress.objects.all()    # 查询全部数据
+    count_page =10    # 按每页count_page条数据分页
+    paginator = Paginator(progress_list, count_page)
+    start = (int(page)-1)*count_page
+    try:
+        progress_data = paginator.page(page)
+    # 显示第一页,传入page的值为None或空，默认为1
+    except PageNotAnInteger:
+        progress_data = paginator.page(1)
+    # 传入page值不在有效范围
+    except EmptyPage:
+        progress_data = paginator.page(paginator.num_pages)
+    context = {
+        'progress_data': progress_data,
+        'start': start,
+        'search_data': search_data,
+        'username': request.user,
+    }
+    return render(request, 'project/progress.html', context)
 
+
+# 导入进度数据
+def progress_import(request):
+    if request.method == 'POST':
+        progress_file = request.FILES.get('progress_file')
+        file_type = progress_file.name.split('.')[1]  # 获取文件后缀
+        if file_type in ['xlsx', 'xls']:
+            date = xlrd.open_workbook(filename=None, file_contents=progress_file.read())
+            tables = date.sheets()
+            for table in tables:
+                rows = table.nrows
+                try:
+                    with transaction.atomic():
+                        data_table = []
+                        for row in range(1, rows):
+                            row_values = table.row_values(row)
+                            try:
+                                tasks = Task.objects.get(task_num=row_values[0])  # 判断任务是否存在
+                            except Task.DoesNotExist:
+                                return HttpResponse('数据中有不存在的任务！')
+                            else:
+                                data_table.append(Progress(
+                                    tasks=tasks,
+                                    date=row_values[1],
+                                    executor=row_values[2],
+                                    hours=row_values[3],
+                                    record=row_values[4],
+                                ))
+                        Progress.objects.bulk_create(data_table)
+                except Exception:
+                    return HttpResponse('解析excel文件或者数据插入错误！')
+            return HttpResponse('数据导入成功')
+        else:
+            return HttpResponse('上传文件类型错误！')
+    return render(request, 'project/progress.html')
+
+
+# 导出进度数据
+def progress_download(request, model):
+    sio = BytesIO()
+    if model == 1:  # 模式1，导出数据
+        export(Progress).save(sio)
+    elif model == 2:  # 模式2，导出模板
+        template(Progress).save(sio)
+    sio.seek(0)
+    response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=test.xlsx'
+    response.write(sio.getvalue())
+    return response
+
+
+# 添加一条进度数据
+def progress_add(request):
+    if request.method == 'GET':
+        return render(request, 'project/progress.html')
+
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        executor = request.POST.get('executor')
+        hours = request.POST.get('hours')
+        record = request.POST.get('record')
+        task_num = request.POST.get('task_num')
+        context = {}
+        try:
+            tasks = Task.objects.get(task_num=task_num)  # 判断任务是否存在
+        except Task.DoesNotExist:
+            context['wrong'] = '该任务不存在'
+        else:
+            Progress.objects.create(
+                tasks=tasks,
+                date=date,
+                hours=hours,
+                executor=executor,
+                record=record,)
+            return HttpResponseRedirect(reverse('project:progress'))
+        return render(request, 'project/progress.html', context)
+
+
+# 修改进度数据
+def progress_modify(request):
+    date = request.POST.get('date')
+    executor = request.POST.get('executor')
+    hours = request.POST.get('hours')
+    record = request.POST.get('record')
+    task_num = request.POST.get('task_num')
+    try:
+        tasks = Task.objects.get(task_num=task_num)  # 判断任务是否存在
+    except Task.DoesNotExist:
+        return HttpResponse('该任务不存在')
+    else:
+        try:
+            progress = tasks.to_progress.get(date=date)  # 判断进度是否存在
+        except Progress.DoesNotExist:
+            return HttpResponse('任务进度不存在')
+        else:
+            progress.date = date
+            progress.executor = executor
+            progress.hours = hours
+            progress.record = record
+            progress.save()
+        return HttpResponseRedirect(reverse('project:progress'))
 
 
 

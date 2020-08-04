@@ -20,8 +20,13 @@
     </form>
 
     {# 导出数据 #}
-    <a href="{% url 'project:task_download' %}">
+    <a href="{% url 'project:task_download' 1 %}">
         <button class="btn btn-primary" type="button" style="display:inline-block;float: right;">导出数据</button>
+    </a>
+
+    {# 导出模板 #}
+    <a href="{% url 'project:task_download' 2 %}">
+        <button class="btn btn-primary" type="button" style="display:inline-block;float: right;">导出模板</button>
     </a>
 
     {# 手动添加一条数据，按钮触发模态框 #}

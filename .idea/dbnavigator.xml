@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="72df1828-05f1-48a8-9d84-737222013539">
-        <schema name="main" object-types="column, constraint, view, index, dataset trigger, table" />
+        <schema name="main" object-types="table, column, view, index, constraint, dataset trigger" />
       </connection>
     </loaded-nodes>
   </component>
@@ -35,9 +35,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="72df1828-05f1-48a8-9d84-737222013539" object-ref="schemas/main/tables/project_project" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="72df1828-05f1-48a8-9d84-737222013539" />

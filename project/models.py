@@ -98,7 +98,7 @@ class Vision(models.Model):
 
 # 进度表
 class Progress(models.Model):
-    data = models.DateTimeField(verbose_name='日期')
+    date = models.DateTimeField(verbose_name='日期')
     executor = models.CharField(max_length=20, verbose_name='执行人')
     hours = models.FloatField(unique=True, verbose_name='工时')
     record = models.TextField(unique=True, verbose_name='开发记录')
@@ -111,7 +111,7 @@ class Progress(models.Model):
         verbose_name='所属任务',)
 
     class Meta:
-        ordering = ['-data']
+        ordering = ['-date']
         verbose_name = '进度'
         verbose_name_plural = '进度'
 
