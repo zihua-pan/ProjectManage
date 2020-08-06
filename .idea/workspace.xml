@@ -4,16 +4,23 @@
     <list default="true" id="14b2f2a2-1860-4df2-b787-057cb545f4b3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_tools/my_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_tools/my_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/migrations/0002_auto_20200725_2310.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/migrations/0003_auto_20200802_1733.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/templates/login/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/migrations/0002_auto_20200802_1733.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/migrations/0003_auto_20200802_1748.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/migrations/0004_auto_20200804_2321.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/project/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/product.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/progress.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/project/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/project.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/task.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/vision.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/vision.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +52,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -97,10 +105,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="359" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593877619316" />
-    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog" timestamp="1595639947266">
+    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog" timestamp="1596633255928">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog/0.0.1536.824@0.0.1536.824" timestamp="1595639947266" />
+    <state x="349" y="125" key="DBNavigator.DatasetFilterDialog/0.0.1536.824@0.0.1536.824" timestamp="1596633255928" />
+    <state x="495" y="213" key="DBNavigator.DatasetRecordEditorDialog" timestamp="1596716233912">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="495" y="213" key="DBNavigator.DatasetRecordEditorDialog/0.0.1536.824@0.0.1536.824" timestamp="1596716233912" />
     <state x="299" y="65" key="DBNavigator.ProjectSettingsDialog" timestamp="1595639589077">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

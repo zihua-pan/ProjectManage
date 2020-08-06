@@ -1,5 +1,4 @@
 from io import BytesIO
-import xlwt
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, F
 from django.http import HttpResponse
@@ -45,7 +44,7 @@ def project(request):
         'project_data': project_data,
         'start': start,
         'search_data': search_data,
-        'username': request.user,
+        'username': request.user.first_name,
     }
     return render(request, 'project/project.html', context)
 
@@ -184,7 +183,7 @@ def product(request):
         'product_data': product_data,
         'start': start,
         'search_data': search_data,
-        'username': request.user,
+        'username': request.user.first_name,
     }
     return render(request, 'project/product.html', context)
 
@@ -205,15 +204,15 @@ def product_import(request):
                         for row in range(1, rows):
                             row_values = table.row_values(row)
                             try:
-                                projects = Project.objects.get(project_num=row_values[3]) # 判断项目是否存在
+                                projects = Project.objects.get(project_num=row_values[0]) # 判断项目是否存在
                             except Project.DoesNotExist:
                                 return HttpResponse('数据中有未被创建的项目！')
                             else:
                                 data_table.append(Product(
-                                    product_model=row_values[0],
-                                    product_type=row_values[1],
-                                    product_name=row_values[2],
                                     projects=projects,
+                                    product_model=row_values[1],
+                                    product_name=row_values[2],
+                                    product_type=row_values[3],
                                 ))
                         Product.objects.bulk_create(data_table)
                 except Exception:
@@ -297,7 +296,7 @@ def task(request):
         red_path = '?page='+str(page)
         return HttpResponseRedirect(reverse('project:task')+red_path)
     if search_data:   # 模糊查询
-        task_list = Task.objects.filter(task_num=search_data)
+        task_list = Task.objects.filter(task_num__contains=search_data)
     else:
         task_list = Task.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页
@@ -315,7 +314,7 @@ def task(request):
         'task_data': task_data,
         'start': start,
         'search_data': search_data,
-        'username': request.user,
+        'username': request.user.first_name,
     }
     return render(request, 'project/task.html', context)
 
@@ -336,21 +335,21 @@ def task_import(request):
                         for row in range(1, rows):
                             row_values = table.row_values(row)
                             try:
-                                products = Product.objects.get(product_model=row_values[1])  # 判断产品是否存在
+                                products = Product.objects.get(product_model=row_values[0])  # 判断产品是否存在
                             except Product.DoesNotExist:
                                 return HttpResponse('数据中有不存在的产品！')
                             else:
                                 data_table.append(Task(
-                                    task_num=row_values[0],
                                     products=products,
+                                    task_num=row_values[1],
                                     dev_type=row_values[2],
                                     start_time=row_values[3],
                                     end_time=row_values[4],
                                     task_status=row_values[5],
                                 ))
-                        task.objects.bulk_create(data_table)
+                        Task.objects.bulk_create(data_table)
                 except Exception:
-                    return HttpResponse('解析excel文件或者数据插入错误！')
+                     return HttpResponse('解析excel文件或者数据插入错误！')
             return HttpResponse('数据导入成功')
         else:
             return HttpResponse('上传文件类型错误！')
@@ -435,7 +434,7 @@ def vision(request):
         red_path = '?page='+str(page)
         return HttpResponseRedirect(reverse('project:vision')+red_path)
     if search_data:   # 模糊查询
-        vision_list = Vision.objects.filter(vision_name=search_data)
+        vision_list = Vision.objects.filter(tasks__task_num__contains=search_data)
     else:
         vision_list = Vision.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页
@@ -453,7 +452,7 @@ def vision(request):
         'vision_data': vision_data,
         'start': start,
         'search_data': search_data,
-        'username': request.user,
+        'username': request.user.first_name,
     }
     return render(request, 'project/vision.html', context)
 
@@ -474,16 +473,17 @@ def vision_import(request):
                         for row in range(1, rows):
                             row_values = table.row_values(row)
                             try:
-                                tasks = Task.objects.get(task_num=row_values[1])  # 判断任务是否存在
+                                tasks = Task.objects.get(task_num=row_values[0])  # 判断任务是否存在
                             except Task.DoesNotExist:
                                 return HttpResponse('数据中有不存在的任务！')
                             else:
                                 data_table.append(Vision(
-                                    vision_num=row_values[0],
-                                    vision_name=row_values[1],
-                                    executor=row_values[2],
-                                    start_time=row_values[3],
-                                    end_time=row_values[4],
+                                    tasks=tasks,
+                                    vision_num=row_values[1],
+                                    vision_name=row_values[2],
+                                    executor=row_values[3],
+                                    start_time=row_values[4],
+                                    end_time=row_values[5],
                                 ))
                         Vision.objects.bulk_create(data_table)
                 except Exception:
@@ -567,8 +567,8 @@ def progress(request):
         # 删完数据重定向到当前页
         red_path = '?page='+str(page)
         return HttpResponseRedirect(reverse('project:progress')+red_path)
-    if search_data:   # 模糊查询
-        progress_list = Task.objects.get(task_num=search_data).to_progress.all()
+    if search_data:   # 外键模糊查询
+        progress_list = Progress.objects.filter(tasks__task_num__contains=search_data)
     else:
         progress_list = Progress.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页
@@ -586,7 +586,7 @@ def progress(request):
         'progress_data': progress_data,
         'start': start,
         'search_data': search_data,
-        'username': request.user,
+        'username': request.user.first_name,
     }
     return render(request, 'project/progress.html', context)
 
@@ -597,8 +597,8 @@ def progress_import(request):
         progress_file = request.FILES.get('progress_file')
         file_type = progress_file.name.split('.')[1]  # 获取文件后缀
         if file_type in ['xlsx', 'xls']:
-            date = xlrd.open_workbook(filename=None, file_contents=progress_file.read())
-            tables = date.sheets()
+            data = xlrd.open_workbook(filename=None, file_contents=progress_file.read())
+            tables = data.sheets()
             for table in tables:
                 rows = table.nrows
                 try:
@@ -607,16 +607,16 @@ def progress_import(request):
                         for row in range(1, rows):
                             row_values = table.row_values(row)
                             try:
-                                tasks = Task.objects.get(task_num=row_values[0])  # 判断任务是否存在
+                                tasks = Task.objects.get(task_num=row_values[1])  # 判断任务是否存在
                             except Task.DoesNotExist:
                                 return HttpResponse('数据中有不存在的任务！')
                             else:
                                 data_table.append(Progress(
                                     tasks=tasks,
-                                    date=row_values[1],
-                                    executor=row_values[2],
-                                    hours=row_values[3],
-                                    record=row_values[4],
+                                    date=row_values[2],
+                                    executor=row_values[3],
+                                    hours=row_values[4],
+                                    record=row_values[5],
                                 ))
                         Progress.objects.bulk_create(data_table)
                 except Exception:

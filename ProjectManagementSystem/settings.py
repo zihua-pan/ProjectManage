@@ -115,9 +115,13 @@ TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
-USE_TZ = True
+USE_TZ = False  # 关闭默认时区
+
+DATE_FORMAT = 'Y-m-d'
+
+DATETIME_FORMAT = 'Y-m-d H:i:s'
 
 # 设置匿名用户跳转界面
 LOGIN_URL = '/login/'

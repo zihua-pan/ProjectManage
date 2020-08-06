@@ -54,7 +54,7 @@
                         <div class="form-group">
 							<label for="date" class="col-sm-3 control-label">日期</label>
 							<div class="col-sm-9">
-								<input type="text" id="date" name="date" class="form-control" required>
+								<input type="date" id="date" name="date" class="form-control" required>
 							</div>
 						</div>
 
@@ -106,7 +106,7 @@
         {% for progress in progress_data %}
             <TR>
                 <TD>{{progress.tasks.task_num}}</TD>
-                <TD>{{progress.date}}</TD>
+                <TD>{{progress.date|date:"Y-m-d"}}</TD>
                 <TD>{{progress.executor}}</TD>
                 <TD>{{progress.hours}}</TD>
                 <TD>{{progress.record}}</TD>
@@ -156,8 +156,8 @@
                                         <div class="form-group">
                                             <label for="modify_date" class="col-sm-3 control-label">日期</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_date" name="date" class="form-control"
-                                                       value="{{progress.date}}" required>
+                                                <input type="date" id="modify_date" name="date" class="form-control"
+                                                       value="{{progress.date|date:'Y-m-d'}}" required>
                                             </div>
                                         </div>
 

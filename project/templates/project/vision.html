@@ -14,7 +14,7 @@
     {# 搜索框 #}
     <form action="" method="get" role="form">
         <div class="form-group">
-        <input type="text" name="search" required style="display:inline-block;float:left;" placeholder="输入产品型号或名称">
+        <input type="text" name="search" required style="display:inline-block;float:left;" placeholder="输入任务单号">
         <button type="submit" class="btn btn-primary" style="display:inline-block;float:left;">查询</button>
         </div>
     </form>
@@ -113,7 +113,7 @@
 
         {% for vision in vision_data %}
             <TR>
-                <td>{{floop.counter|add:start}}</td>
+                <td>{{forloop.counter|add:start}}</td>
                 <td>{{vision.tasks.task_num}}</td>
                 <td>{{vision.vision_num}}</td>
                 <td>{{vision.vision_name}}</td>
@@ -158,7 +158,7 @@
                                         <div class="form-group">
                                             <label for="modify_task" class="col-sm-3 control-label">任务单号</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_task" name="modify_task" class="form-control"
+                                                <input type="text" id="modify_task" name="task_num" class="form-control"
                                                        required value="{{vision.tasks.task_num}}" disabled>
                                             </div>
                                         </div>
@@ -167,7 +167,7 @@
                                             <label for="modify_num" class="col-sm-3 control-label">版本数</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="modify_num" name="vision_num" class="form-control"
-                                                       required value="{{vision.vision_num}}" disabled>
+                                                       required value="{{vision.vision_num}}" readonly>
                                             </div>
                                         </div>
 
@@ -175,7 +175,7 @@
                                             <label for="modify_name" class="col-sm-3 control-label">版本名称</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="modify_name" name="vision_name" class="form-control"
-                                                       required value="{{vision.vision_name}}">
+                                                       required value="{{vision.vision_name}}" readonly>
                                             </div>
                                         </div>
 
