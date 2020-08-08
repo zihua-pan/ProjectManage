@@ -104,6 +104,10 @@
                 <TD>{{product.product_type}}</TD>
                 <TD>
 
+                    <button class="btn btn-primary btn-sm" >
+                        <a href="/project/task?detail={{product.to_task.all.0.task_num}}" style="color:white;">详情</a>
+                    </button>
+
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my{{product.product_model}}">删除</button>
                     {# 模态框 删除 #}
                     <div class="modal fade" id="my{{product.product_model}}" tabindex="-1" role="dialog" aria-labelledby="{{product.product_model}}" aria-hidden="true">

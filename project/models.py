@@ -86,8 +86,8 @@ class Vision(models.Model):
     vision_num = models.PositiveIntegerField(verbose_name='版本数')
     vision_name = models.CharField(max_length=40,  primary_key=True, verbose_name='版本名称')
     executor = models.CharField(max_length=20, verbose_name='执行人')
-    start_time = models.DateField(blank=True, verbose_name='开始时间')
-    end_time = models.DateField(blank=True, verbose_name='结束时间')
+    start_time = models.DateField(blank=True, null=True, verbose_name='开始时间')
+    end_time = models.DateField(blank=True, null=True, verbose_name='结束时间')
     create_time = models.DateTimeField(auto_now_add=timezone.now, verbose_name='创建时间')
 
     class Meta:

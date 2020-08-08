@@ -18,7 +18,7 @@
                 <TD>{{user.area}}</TD>
                 <TD>{{user.email}}</TD>
                 <TD>{{user.date_joined}}</TD>
-                <TD>{{user.last_login}}</TD>
+                <TD>{{user.last_login|default_if_none:''}}</TD>
                 <TD></TD>
             </TR>
         {% endfor%}

@@ -14,6 +14,7 @@ def user(request):
     else:
         context = {
             'userset': User.objects.all(),
+            'username': request.user.first_name,
         }
     return render(request, 'system/user.html', context)
 
@@ -27,5 +28,6 @@ def role(request):
         'admin_set': admin_set,
         'leader_set': leader_set,
         'member_set': member_set,
+        'username': request.user.first_name,
     }
     return render(request, 'system/role.html', context)

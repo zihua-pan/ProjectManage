@@ -103,6 +103,10 @@
                 <TD>{{project.to_department.all.0.department_name}}</TD>
                 <td>
 
+                    <button class="btn btn-primary btn-sm" >
+                        <a href="/project/product?detail={{project.project_num}}" style="color:white;">详情</a>
+                    </button>
+
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my{{project.project_num}}">删除</button>
                     {# 模态框 删除 #}
                     <div class="modal fade" id="my{{project.project_num}}" tabindex="-1" role="dialog" aria-labelledby="i{{project.project_num}}" aria-hidden="true">

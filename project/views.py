@@ -157,6 +157,7 @@ def product(request):
     del_id = request.GET.get('del_id', '')
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
+    detail = request.GET.get('detail', '')
     if del_id:     # 删除数据
         Product.objects.get(product_model=del_id).delete()
         # 删完数据重定向到当前页
@@ -166,9 +167,11 @@ def product(request):
         product_list = Product.objects.filter(
             Q(product_model__contains=search_data)|Q(product_name__contains=search_data)
         )
+    elif detail:
+        product_list = Product.objects.filter(projects__project_num=detail)
     else:
         product_list = Product.objects.all()    # 查询全部数据
-    count_page =10    # 按每页count_page条数据分页
+    count_page = 10    # 按每页count_page条数据分页
     paginator = Paginator(product_list, count_page)
     start = (int(page)-1)*count_page
     try:
@@ -290,6 +293,7 @@ def task(request):
     del_id = request.GET.get('del_id', '')
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
+    detail = request.GET.get('detail', '')
     if del_id:     # 删除数据
         Task.objects.get(task_num=del_id).delete()
         # 删完数据重定向到当前页
@@ -297,6 +301,8 @@ def task(request):
         return HttpResponseRedirect(reverse('project:task')+red_path)
     if search_data:   # 模糊查询
         task_list = Task.objects.filter(task_num__contains=search_data)
+    elif detail:
+        task_list = Task.objects.filter(task_num=detail)
     else:
         task_list = Task.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页
@@ -428,6 +434,7 @@ def vision(request):
     del_id = request.GET.get('del_id', '')
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
+    detail = request.GET.get('detail', '')
     if del_id:     # 删除数据
         Vision.objects.get(vision_name=del_id).delete()
         # 删完数据重定向到当前页
@@ -435,6 +442,8 @@ def vision(request):
         return HttpResponseRedirect(reverse('project:vision')+red_path)
     if search_data:   # 模糊查询
         vision_list = Vision.objects.filter(tasks__task_num__contains=search_data)
+    elif detail:
+        vision_list = Vision.objects.filter(tasks__task_num=detail)
     else:
         vision_list = Vision.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页
@@ -517,8 +526,8 @@ def vision_add(request):
         vision_num = request.POST.get('vision_num')
         vision_name = request.POST.get('vision_name')
         executor = request.POST.get('executor')
-        start_time = request.POST.get('start_time')
-        end_time = request.POST.get('end_time')
+        start_time = request.POST.get('start_time', '')
+        end_time = request.POST.get('end_time', '')
         task_num = request.POST.get('task_num')
         context = {}
         try:
@@ -549,8 +558,14 @@ def vision_modify(request):
         return HttpResponse('该版本不存在')
     else:
         vs.executor = executor
-        vs.start_time = start_time
-        vs.end_time = end_time
+        if start_time:
+            vs.start_time = start_time
+        else:
+            vs.start_time = None
+        if end_time:
+            vs.end_time = end_time
+        else:
+            vs.end_time = None
         vs.save()
         return HttpResponseRedirect(reverse('project:vision'))
 
@@ -562,6 +577,7 @@ def progress(request):
     del_id = request.GET.get('del_id', '')
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
+    detail = request.GET.get('detail', '')
     if del_id:     # 删除数据
         Progress.objects.get(id=del_id).delete()
         # 删完数据重定向到当前页
@@ -569,6 +585,8 @@ def progress(request):
         return HttpResponseRedirect(reverse('project:progress')+red_path)
     if search_data:   # 外键模糊查询
         progress_list = Progress.objects.filter(tasks__task_num__contains=search_data)
+    elif detail:
+        progress_list = Progress.objects.filter(tasks__task_num=detail)
     else:
         progress_list = Progress.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页

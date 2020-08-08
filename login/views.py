@@ -3,8 +3,8 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-
 from .models import User
+from project.models import Project, Product, Progress, Vision, Task
 
 
 # Create your views here.
@@ -32,5 +32,6 @@ def login(request):
 
 
 def homepage(request):
+
     return render(request, 'login/homepage.html')
 

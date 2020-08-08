@@ -74,14 +74,14 @@
 						<div class="form-group">
 							<label for="start_time" class="col-sm-3 control-label">开始时间</label>
 							<div class="col-sm-9">
-								<input type="text" id="start_time" name="start_time" class="form-control" required>
+								<input type="text" id="start_time" name="start_time" class="form-control">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="end_time" class="col-sm-3 control-label">结束时间</label>
 							<div class="col-sm-9">
-								<input type="text" id="end_time" name="end_time" class="form-control" required>
+								<input type="text" id="end_time" name="end_time" class="form-control">
 							</div>
 						</div>
 
@@ -118,9 +118,14 @@
                 <td>{{vision.vision_num}}</td>
                 <td>{{vision.vision_name}}</td>
                 <td>{{vision.executor}}</td>
-                <td>{{vision.start_time}}</td>
-                <td>{{vision.end_time}}</td>
+                <td>{{vision.start_time|default_if_none:''}}</td>
+                <td>{{vision.end_time|default_if_none:''}}</td>
                 <td>
+
+                    <button class="btn btn-primary btn-sm">
+                        <a href="/project/progress?detail={{vision.tasks.task_num}}" style="color:white;">详情</a>
+                    </button>
+
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my{{vision.vision_name}}">删除</button>
                     {# 模态框 删除 #}
                     <div class="modal fade" id="my{{vision.vision_name}}" tabindex="-1" role="dialog" aria-labelledby="{{vision.vision_name}}" aria-hidden="true">
@@ -190,16 +195,16 @@
                                         <div class="form-group">
                                             <label for="modify_start" class="col-sm-3 control-label">开始时间</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_start" name="start_time" class="form-control"
-                                                       value="{{vision.start_time}}" required>
+                                                <input type="date" id="modify_start" name="start_time" class="form-control"
+                                                       value="{{vision.start_time}}">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="modify_end" class="col-sm-3 control-label">结束时间</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_end" name="end_time" class="form-control"
-                                                       value="{{vision.end_time}}" required>
+                                                <input type="date" id="modify_end" name="end_time" class="form-control"
+                                                       value="{{vision.end_time}}">
                                             </div>
                                         </div>
 
