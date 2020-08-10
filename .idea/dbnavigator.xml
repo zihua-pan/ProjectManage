@@ -26,34 +26,21 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="72df1828-05f1-48a8-9d84-737222013539">
-      <console name="Connection" type="STANDARD" schema="main" session="Main" />
+    <connection id="10cc9631-adb2-4361-af58-020aa4e62609">
+      <console name="Connection 1" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="72df1828-05f1-48a8-9d84-737222013539" />
+    <connection id="10cc9631-adb2-4361-af58-020aa4e62609" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.login_user" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.django_migrations" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.auth_group_permissions" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_progress" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.django_content_type" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_department_projects" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.django_session" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_task" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.login_user_user_permissions" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.sqlite_sequence" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_product" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.auth_group" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.login_user_groups" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_vision" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_project" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.project_department" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="72df1828-05f1-48a8-9d84-737222013539" dataset="main.auth_permission" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="django_mysql.project_task" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="django_mysql.project_vision" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="mysql.time_zone" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="django_mysql.project_product" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -78,26 +65,23 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="72df1828-05f1-48a8-9d84-737222013539" active="true">
+      <connection id="10cc9631-adb2-4361-af58-020aa4e62609" active="true">
         <database>
-          <name value="Connection" />
+          <name value="Connection 1" />
           <description value="" />
-          <database-type value="SQLITE" />
+          <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="3.3" />
+          <database-version value="5.7" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
-          <url-type value="FILE" />
+          <url-type value="DATABASE" />
           <host value="localhost" />
-          <port value="1234" />
-          <database value="database" />
-          <files>
-            <file path="F:\ProjectManagementSystem\db.sqlite3" schema="main" />
-          </files>
-          <type value="NONE" />
-          <user value="" />
-          <deprecated-pwd value="" />
+          <port value="3306" />
+          <database value="mysql" />
+          <type value="USER_PASSWORD" />
+          <user value="root" />
+          <deprecated-pwd value="YWRtaW4=" />
         </database>
         <properties>
           <auto-commit value="false" />

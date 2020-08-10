@@ -109,7 +109,11 @@ def project_modify(request):
     else:
         pj.project_name = project_name
         pj.project_manager = project_manager
-        pj.to_department
+        try:
+            dp = Department.objects.get(department_name=department)
+        except Department.DoesNotExist:
+            dp = Department.objects.create(department_name=department)
+        pj.to_department.add(dp)  # 添加多对多数据
         pj.save()
         return HttpResponseRedirect(reverse('project:project'))
 
@@ -135,6 +139,7 @@ def project_add(request):
                     project_num=project_num,
                     project_name=project_name,
                     project_manager=project_manager,).to_department.create(department_name=department)
+                return HttpResponseRedirect(reverse('project:project'))
             else:
                 Project.objects.create(
                     project_num=project_num,
@@ -143,7 +148,7 @@ def project_add(request):
                 return HttpResponseRedirect(reverse('project:project'))
         else:
             context['wrong'] = '已存在该项目'
-    return render(request, 'project/project.html', context)
+        return render(request, 'project/project.html', context)
 
 
 
@@ -294,6 +299,7 @@ def task(request):
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
     detail = request.GET.get('detail', '')
+    task_num = request.GET.get('task_num', '')
     if del_id:     # 删除数据
         Task.objects.get(task_num=del_id).delete()
         # 删完数据重定向到当前页
@@ -302,7 +308,9 @@ def task(request):
     if search_data:   # 模糊查询
         task_list = Task.objects.filter(task_num__contains=search_data)
     elif detail:
-        task_list = Task.objects.filter(task_num=detail)
+        task_list = Task.objects.filter(products__product_model=detail)
+    elif task_num:
+        task_list = Task.objects.filter(task_num=task_num)
     else:
         task_list = Task.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页
@@ -578,6 +586,7 @@ def progress(request):
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
     detail = request.GET.get('detail', '')
+    tk = ''
     if del_id:     # 删除数据
         Progress.objects.get(id=del_id).delete()
         # 删完数据重定向到当前页
@@ -587,6 +596,10 @@ def progress(request):
         progress_list = Progress.objects.filter(tasks__task_num__contains=search_data)
     elif detail:
         progress_list = Progress.objects.filter(tasks__task_num=detail)
+        try:  # 将任务数据返回前端
+            tk = Task.objects.get(task_num=detail)
+        except Task.DoesNotExist:
+            pass
     else:
         progress_list = Progress.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页
@@ -605,6 +618,7 @@ def progress(request):
         'start': start,
         'search_data': search_data,
         'username': request.user.first_name,
+        'task': tk,
     }
     return render(request, 'project/progress.html', context)
 

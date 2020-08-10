@@ -62,8 +62,8 @@
         }
 
     * {
-                    margin: 0;
-                    padding: 0;
+        margin: 0;
+        padding: 0;
                 }
 
     table {
@@ -71,6 +71,7 @@
                 border-spacing: 0;
                 /*表格设置合并边框模型*/
                 border-collapse: collapse;
+                table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
             }
             /*关键设置 tbody出现滚动条*/
             table tbody {
@@ -99,7 +100,13 @@
             color:#000000;
             text-decoration:none;
             }
-
+            td{
+                width:100%;
+                word-break:keep-all;/* 不换行 */
+                white-space:nowrap;/* 不换行 */
+                overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+                text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+            }
 	</style>
 </head>
 <body>
