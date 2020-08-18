@@ -27,7 +27,7 @@ def login(request):
             #  if check_password(password, User.objects.get(username=username).password):  # 密码校验
             if user:
                 auth.login(request, user)
-                return render(request, 'login/homepage.html', context)
+                return HttpResponseRedirect(reverse('login:homepage'))
             else:
                 context = {'wrong': '密码不正确'}
     return render(request, 'login/login.html', context)

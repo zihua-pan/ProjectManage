@@ -2,7 +2,7 @@
 
 {% block rightup %}
     {# 导入数据 #}
-
+<h1 style="display:inline-block;float:left;">项目维护</h1>
     <form action="{% url 'project:project_import'%}" method="post" enctype="multipart/form-data" role="form">
         {% csrf_token %}
         <div class="form-group">

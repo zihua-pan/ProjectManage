@@ -1,7 +1,7 @@
 {% extends 'login/base.html' %}
 
     {% block rightup %}
-
+<h1 style="display:inline-block;float:left;">任务维护</h1>
     {# 导入数据 #}
     <form action="{% url 'project:task_import' %}" method="post" enctype="multipart/form-data" role="form">
         {% csrf_token %}

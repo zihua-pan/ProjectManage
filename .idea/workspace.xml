@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b2f2a2-1860-4df2-b787-057cb545f4b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/product.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/progress.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/project/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/project.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/project/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/project/vision.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/project/vision.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/system/role.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/system/role.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/templates/system/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/system/templates/system/user.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
