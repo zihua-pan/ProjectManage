@@ -58,7 +58,7 @@
         background-color:#84AF9B;
         }
     .inner{
-        min-height:20px;
+        min-height:10px;
         }
 
     * {
@@ -86,7 +86,7 @@
             table thead,
             tbody tr {
                 display: table;
-                width: 100%;
+                width: 110%;
                 table-layout: fixed;
             }
             /*关键设置：滚动条默认宽度是16px 将thead的宽度减16px*/
@@ -114,28 +114,30 @@
 
 
         <div class="top">
-            <p><font size="6">项目管理系统</font></p>
+            <p class="text-center h1">项目管理系统</p>
             <p align="right"><font size="4">你好，<a href="#">{{username}}</a></font>&emsp;</p>
         </div>
 
 		<div class="left">
 
             <font size="5">
-
+                <br>
+                <p class="text-center">
                 <a href="{% url 'login:homepage' %}" >主页</a>
+                </p>
 
-                <p>系统管理</p>
-                <ul>
+                <p class="text-center">系统管理</p>
+                <ul class="text-center" style="list-style-type :none;">
                     <li><a href="{% url 'system:user' %}">用户管理</a></li>
                     <li><a href="{% url 'system:role' %}">角色管理</a></li>
                 </ul>
 
-            <p>项目管理</p>
-                <ul>
+            <p class="text-center">项目管理</p>
+                <ul class="text-center" style="list-style-type :none;">
                     <li><a href="{% url 'project:project' %}">项目维护</a></li>
                     <li><a href="{% url 'project:product' %}">产品维护</a></li>
                     <li><a href="{% url 'project:task' %}">任务维护</a></li>
-                    <li><a href="{% url 'project:vision' %}">版本维护</a></li>
+                    <li><a href="{% url 'project:version' %}">版本维护</a></li>
                     <li><a href="{% url 'project:progress' %}">进度维护</a></li>
                 </ul>
             </font>

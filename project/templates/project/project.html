@@ -1,15 +1,9 @@
 {% extends 'login/base.html' %}
 
 {% block rightup %}
-    {# 导入数据 #}
-<h1 style="display:inline-block;float:left;">项目维护</h1>
-    <form action="{% url 'project:project_import'%}" method="post" enctype="multipart/form-data" role="form">
-        {% csrf_token %}
-        <div class="form-group">
-        <input type="file" name="project_file" required style="display:inline-block;float: right;">
-        <button type="submit" class="btn btn-primary" style="display:inline-block;float: right;">导入数据</button>
-        </div>
-    </form>
+
+<h3 style="display:inline-block;float:left;" class="col-lg-2">项目维护</h3>
+
 
     {# 搜索框 #}
     <form action="" method="get" role="form">
@@ -18,6 +12,18 @@
         <button type="submit" class="btn btn-primary" style="display:inline-block;float:left;">查询</button>
         </div>
     </form>
+
+
+
+    {# 导入数据 #}
+    <form action="{% url 'project:project_import'%}" method="post" enctype="multipart/form-data" role="form">
+        {% csrf_token %}
+        <div class="form-group">
+        <input type="file" name="project_file" required style="display:inline-block;float: right;">
+        <button type="submit" class="btn btn-primary" style="display:inline-block;float:right;">导入数据</button>
+        </div>
+    </form>
+
 
     {# 导出数据 #}
     <a href="{% url 'project:project_download' model=1 %}">
@@ -80,6 +86,8 @@
 		    </div>
 		</div>
 	</div>
+
+
     {% endblock rightup %}
 
     {% block right %}
@@ -101,7 +109,7 @@
                 <TD>{{project.project_name}}</TD>
                 <TD>{{project.project_manager}}</TD>
                 <TD>{{project.to_department.all.0.department_name}}</TD>
-                <td>
+                <td nowrap>
 
                     <button class="btn btn-primary btn-sm" >
                         <a href="/project/product?detail={{project.project_num}}" style="color:white;">详情</a>

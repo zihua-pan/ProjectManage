@@ -1,12 +1,13 @@
 import datetime
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import User
-from project.models import Project, Product, Progress, Vision, Task
+from project.models import Project, Product, Progress, Version, Task
 
 
 # Create your views here.
@@ -33,6 +34,8 @@ def login(request):
     return render(request, 'login/login.html', context)
 
 
+# 主页视图
+@login_required
 def homepage(request):
     now = datetime.date.today()
     if now.weekday() == 6:

@@ -26,11 +26,11 @@ urlpatterns = [
     path('task/modify/', views.task_modify, name='task_modify'),
 
     # 版本相关url
-    path('vision/', views.vision, name='vision'),
-    path('vision/download/<int:model>', views.vision_download, name='vision_download'),
-    path('vision/import/', views.vision_import, name='vision_import'),
-    path('vision/add/', views.vision_add, name='vision_add'),
-    path('vision/modify/', views.vision_modify, name='vision_modify'),
+    path('version/', views.version, name='version'),
+    path('version/download/<int:model>', views.version_download, name='version_download'),
+    path('version/import/', views.version_import, name='version_import'),
+    path('version/add/', views.version_add, name='version_add'),
+    path('version/modify/', views.version_modify, name='version_modify'),
 
     # 进度相关url
     path('progress/', views.progress, name='progress'),

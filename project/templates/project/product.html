@@ -1,7 +1,7 @@
 {% extends 'login/base.html' %}
 
     {% block rightup %}
-    <h1 style="display:inline-block;float:left;">产品维护</h1>
+    <h3 style="display:inline-block;float:left;" class="col-lg-2">产品维护</h3>
     {# 导入数据 #}
     <form action="{% url 'project:product_import'%}" method="post" enctype="multipart/form-data" role="form">
         {% csrf_token %}
@@ -102,7 +102,7 @@
                 <TD>{{product.product_model}}</TD>
                 <TD>{{product.product_name}}</TD>
                 <TD>{{product.product_type}}</TD>
-                <TD>
+                <TD nowrap>
 
                     <button class="btn btn-primary btn-sm" >
                         <a href="/project/task?detail={{product.product_model}}" style="color:white;">详情</a>

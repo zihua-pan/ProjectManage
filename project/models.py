@@ -76,22 +76,22 @@ class Task(models.Model):
 
 
 # 版本表
-class Vision(models.Model):
+class Version(models.Model):
     tasks = models.ForeignKey(
         Task,
         to_field='task_num',
         on_delete=models.CASCADE,
-        related_name='to_vision',
+        related_name='to_version',
         verbose_name='所属任务',)
-    vision_num = models.PositiveIntegerField(verbose_name='版本数')
-    vision_name = models.CharField(max_length=40,  primary_key=True, verbose_name='版本名称')
+    version_num = models.PositiveIntegerField(verbose_name='版本数')
+    version_name = models.CharField(max_length=40,  primary_key=True, verbose_name='版本名称')
     executor = models.CharField(max_length=20, verbose_name='执行人')
     start_time = models.DateField(blank=True, null=True, verbose_name='开始时间')
     end_time = models.DateField(blank=True, null=True, verbose_name='结束时间')
     create_time = models.DateTimeField(auto_now_add=timezone.now, verbose_name='创建时间')
 
     class Meta:
-        ordering = ['vision_num']
+        ordering = ['version_num']
         verbose_name = '版本'
         verbose_name_plural = '版本'
 

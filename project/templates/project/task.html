@@ -1,7 +1,7 @@
 {% extends 'login/base.html' %}
 
     {% block rightup %}
-<h1 style="display:inline-block;float:left;">任务维护</h1>
+<h3 style="display:inline-block;float:left;" class="col-lg-2">任务维护</h3>
     {# 导入数据 #}
     <form action="{% url 'project:task_import' %}" method="post" enctype="multipart/form-data" role="form">
         {% csrf_token %}
@@ -126,9 +126,9 @@
                 <td>{{task.start_time|date:"Y-m-d"}}</td>
                 <td>{{task.end_time|date:"Y-m-d"}}</td>
                 <td>{{task.task_status}}</td>
-                <td width="15%">
+                <td nowrap>
                     <button class="btn btn-primary btn-sm">
-                        <a href="/project/vision?detail={{task.task_num}}" style="color:white;">详情</a>
+                        <a href="/project/version?detail={{task.task_num}}" style="color:white;">详情</a>
                     </button>
 
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my{{task.task_num}}">删除</button>

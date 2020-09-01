@@ -438,49 +438,49 @@ def task_modify(request):
 
 # 版本视图
 @login_required
-def vision(request):
+def version(request):
     del_id = request.GET.get('del_id', '')
     page = request.GET.get('page', 1)
     search_data = request.GET.get('search', '')
     detail = request.GET.get('detail', '')
     if del_id:     # 删除数据
-        Vision.objects.get(vision_name=del_id).delete()
+        Version.objects.get(version_name=del_id).delete()
         # 删完数据重定向到当前页
         red_path = '?page='+str(page)
-        return HttpResponseRedirect(reverse('project:vision')+red_path)
+        return HttpResponseRedirect(reverse('project:version')+red_path)
     if search_data:   # 模糊查询
-        vision_list = Vision.objects.filter(tasks__task_num__contains=search_data)
+        version_list = Version.objects.filter(tasks__task_num__contains=search_data)
     elif detail:
-        vision_list = Vision.objects.filter(tasks__task_num=detail)
+        version_list = Version.objects.filter(tasks__task_num=detail)
     else:
-        vision_list = Vision.objects.all()    # 查询全部数据
+        version_list = Version.objects.all()    # 查询全部数据
     count_page =10    # 按每页count_page条数据分页
-    paginator = Paginator(vision_list, count_page)
+    paginator = Paginator(version_list, count_page)
     start = (int(page)-1)*count_page
     try:
-        vision_data = paginator.page(page)
+        version_data = paginator.page(page)
     # 显示第一页,传入page的值为None或空，默认为1
     except PageNotAnInteger:
-        vision_data = paginator.page(1)
+        version_data = paginator.page(1)
     # 传入page值不在有效范围
     except EmptyPage:
-        vision_data = paginator.page(paginator.num_pages)
+        version_data = paginator.page(paginator.num_pages)
     context = {
-        'vision_data': vision_data,
+        'version_data': version_data,
         'start': start,
         'search_data': search_data,
         'username': request.user.first_name,
     }
-    return render(request, 'project/vision.html', context)
+    return render(request, 'project/version.html', context)
 
 
 # 导入版本数据
-def vision_import(request):
+def version_import(request):
     if request.method == 'POST':
-        vision_file = request.FILES.get('vision_file')
-        file_type = vision_file.name.split('.')[1]  # 获取文件后缀
+        version_file = request.FILES.get('version_file')
+        file_type = version_file.name.split('.')[1]  # 获取文件后缀
         if file_type in ['xlsx', 'xls']:
-            data = xlrd.open_workbook(filename=None, file_contents=vision_file.read())
+            data = xlrd.open_workbook(filename=None, file_contents=version_file.read())
             tables = data.sheets()
             for table in tables:
                 rows = table.nrows
@@ -494,30 +494,30 @@ def vision_import(request):
                             except Task.DoesNotExist:
                                 return HttpResponse('数据中有不存在的任务！')
                             else:
-                                data_table.append(Vision(
+                                data_table.append(Version(
                                     tasks=tasks,
-                                    vision_num=row_values[1],
-                                    vision_name=row_values[2],
+                                    version_num=row_values[1],
+                                    version_name=row_values[2],
                                     executor=row_values[3],
                                     start_time=row_values[4],
                                     end_time=row_values[5],
                                 ))
-                        Vision.objects.bulk_create(data_table)
+                        Version.objects.bulk_create(data_table)
                 except Exception:
                     return HttpResponse('解析excel文件或者数据插入错误！')
             return HttpResponse('数据导入成功')
         else:
             return HttpResponse('上传文件类型错误！')
-    return render(request, 'project/vision.html')
+    return render(request, 'project/version.html')
 
 
 # 导出版本数据
-def vision_download(request, model):
+def version_download(request, model):
     sio = BytesIO()
     if model == 1:  # 模式1，导出数据
-        export(Vision).save(sio)
+        export(Version).save(sio)
     elif model == 2:  # 模式2，导出模板
-        template(Vision).save(sio)
+        template(Version).save(sio)
     sio.seek(0)
     response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename=test.xlsx'
@@ -526,13 +526,13 @@ def vision_download(request, model):
 
 
 # 添加一条版本数据
-def vision_add(request):
+def version_add(request):
     if request.method == 'GET':
-        return render(request, 'project/vision.html')
+        return render(request, 'project/version.html')
 
     if request.method == 'POST':
-        vision_num = request.POST.get('vision_num')
-        vision_name = request.POST.get('vision_name')
+        version_num = request.POST.get('version_num')
+        version_name = request.POST.get('version_name')
         executor = request.POST.get('executor')
         start_time = request.POST.get('start_time', '')
         end_time = request.POST.get('end_time', '')
@@ -543,26 +543,26 @@ def vision_add(request):
         except Task.DoesNotExist:
             context['wrong'] = '该任务不存在'
         else:
-            Vision.objects.create(
+            Version.objects.create(
                 tasks=tasks,
-                vision_num=vision_num,
-                vision_name=vision_name,
+                version_num=version_num,
+                version_name=version_name,
                 executor=executor,
                 start_time=start_time,
                 end_time=end_time,)
-            return HttpResponseRedirect(reverse('project:vision'))
-        return render(request, 'project/vision.html', context)
+            return HttpResponseRedirect(reverse('project:version'))
+        return render(request, 'project/version.html', context)
 
 
 # 修改版本数据
-def vision_modify(request):
-    vision_name = request.POST.get('vision_name')
+def version_modify(request):
+    version_name = request.POST.get('version_name')
     executor = request.POST.get('executor')
     start_time = request.POST.get('start_time')
     end_time = request.POST.get('end_time')
     try:
-        vs = Vision.objects.get(vision_name=vision_name)
-    except Vision.DoesNotExist:
+        vs = Version.objects.get(version_name=version_name)
+    except Version.DoesNotExist:
         return HttpResponse('该版本不存在')
     else:
         vs.executor = executor
@@ -575,7 +575,7 @@ def vision_modify(request):
         else:
             vs.end_time = None
         vs.save()
-        return HttpResponseRedirect(reverse('project:vision'))
+        return HttpResponseRedirect(reverse('project:version'))
 
 
 

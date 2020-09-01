@@ -40,6 +40,8 @@
     <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="django_mysql.project_task" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="django_mysql.project_vision" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="mysql.time_zone" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="django_mysql.project_project" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="django_mysql.project_version" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="10cc9631-adb2-4361-af58-020aa4e62609" dataset="django_mysql.project_product" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">

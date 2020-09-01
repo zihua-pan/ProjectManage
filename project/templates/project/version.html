@@ -1,12 +1,12 @@
 {% extends 'login/base.html' %}
 
     {% block rightup %}
-<h1 style="display:inline-block;float:left;">版本维护</h1>
+<h3 style="display:inline-block;float:left;" class="col-lg-2">版本维护</h3>
     {# 导入数据 #}
-    <form action="{% url 'project:vision_import'%}" method="post" enctype="multipart/form-data" role="form">
+    <form action="{% url 'project:version_import'%}" method="post" enctype="multipart/form-data" role="form">
         {% csrf_token %}
         <div class="form-group">
-        <input type="file" name="vision_file" required style="display:inline-block;float: right;">
+        <input type="file" name="version_file" required style="display:inline-block;float: right;">
         <button type="submit" class="btn btn-primary" style="display:inline-block;float: right;">导入数据</button>
         </div>
     </form>
@@ -20,12 +20,12 @@
     </form>
 
     {# 导出数据 #}
-    <a href="{% url 'project:vision_download' 1 %}">
+    <a href="{% url 'project:version_download' 1 %}">
         <button class="btn btn-primary" type="button" style="display:inline-block;float: right;">导出数据</button>
     </a>
 
     {# 导出模板 #}
-    <a href="{% url 'project:vision_download' 2 %}">
+    <a href="{% url 'project:version_download' 2 %}">
         <button class="btn btn-primary" type="button" style="display:inline-block;float: right;">导出模板</button>
     </a>
 
@@ -41,7 +41,7 @@
 				</div>
 
 				<div class="modal-body">
-					<form method="post" class="form-horizontal" role="form" action="{% url 'project:vision_add' %}">
+					<form method="post" class="form-horizontal" role="form" action="{% url 'project:version_add' %}">
 						{% csrf_token %}
 						<div class="form-group">
 							<label for="task_num" class="col-sm-3 control-label">任务单号</label>
@@ -51,16 +51,16 @@
 						</div>
 
                         <div class="form-group">
-							<label for="vision_num" class="col-sm-3 control-label">版本数</label>
+							<label for="version_num" class="col-sm-3 control-label">版本数</label>
 							<div class="col-sm-9">
-								<input type="text" id="vision_num" name="vision_num" class="form-control" required>
+								<input type="text" id="version_num" name="version_num" class="form-control" required>
 							</div>
 						</div>
 
                         <div class="form-group">
-							<label for="vision_name" class="col-sm-3 control-label">版本名称</label>
+							<label for="version_name" class="col-sm-3 control-label">版本名称</label>
 							<div class="col-sm-9">
-								<input type="text" id="vision_name" name="vision_name" class="form-control" required>
+								<input type="text" id="version_name" name="version_name" class="form-control" required>
 							</div>
 						</div>
 
@@ -111,34 +111,34 @@
             <th>操作</th>
         </TR>
 
-        {% for vision in vision_data %}
+        {% for version in version_data %}
             <TR>
                 <td>{{forloop.counter|add:start}}</td>
-                <td>{{vision.tasks.task_num}}</td>
-                <td>{{vision.vision_num}}</td>
-                <td>{{vision.vision_name}}</td>
-                <td>{{vision.executor}}</td>
-                <td>{{vision.start_time|default_if_none:''}}</td>
-                <td>{{vision.end_time|default_if_none:''}}</td>
-                <td>
+                <td>{{version.tasks.task_num}}</td>
+                <td>{{version.version_num}}</td>
+                <td>{{version.version_name}}</td>
+                <td>{{version.executor}}</td>
+                <td>{{version.start_time|default_if_none:''}}</td>
+                <td>{{version.end_time|default_if_none:''}}</td>
+                <td nowrap>
 
                     <button class="btn btn-primary btn-sm">
-                        <a href="/project/progress?detail={{vision.tasks.task_num}}" style="color:white;">详情</a>
+                        <a href="/project/progress?detail={{version.tasks.task_num}}" style="color:white;">详情</a>
                     </button>
 
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my{{vision.vision_name}}">删除</button>
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my{{version.version_name}}">删除</button>
                     {# 模态框 删除 #}
-                    <div class="modal fade" id="my{{vision.vision_name}}" tabindex="-1" role="dialog" aria-labelledby="{{vision.vision_name}}" aria-hidden="true">
+                    <div class="modal fade" id="my{{version.version_name}}" tabindex="-1" role="dialog" aria-labelledby="{{version.version_name}}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="i{{vision.vision_name}}">删除版本</h4>
+                            <h4 class="modal-title" id="i{{version.version_name}}">删除版本</h4>
                             </div>
                             <div class="modal-body">确定删除该条数据？</div>
                             <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <a href="?page={{vision_data.number}}&del_id={{vision.vision_name}}">
+                            <a href="?page={{version_data.number}}&del_id={{version.version_name}}">
                                 <button type="button" class="btn btn-danger btn-sm">删除</button>
                             </a>
                          </div>
@@ -147,9 +147,9 @@
                       </div>
 
                      {# 手动修改一条数据，按钮触发模态框  同一页面模态框id、target值不能一样 #}
-                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{vision.vision_name}}" style="display:inline-block;float: left;">修改</button>
+                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{version.version_name}}" style="display:inline-block;float: left;">修改</button>
                     {# 模态框 #}
-                    <div class="modal fade" id="{{vision.vision_name}}" tabindex="-1" role="dialog" aria-labelledby="{{forloop.counter|add:start}}" aria-hidden="true">
+                    <div class="modal fade" id="{{version.version_name}}" tabindex="-1" role="dialog" aria-labelledby="{{forloop.counter|add:start}}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -158,29 +158,29 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <form method="post" class="form-horizontal" role="form" action="{% url 'project:vision_modify' %}">
+                                    <form method="post" class="form-horizontal" role="form" action="{% url 'project:version_modify' %}">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label for="modify_task" class="col-sm-3 control-label">任务单号</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="modify_task" name="task_num" class="form-control"
-                                                       required value="{{vision.tasks.task_num}}" disabled>
+                                                       required value="{{version.tasks.task_num}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="modify_num" class="col-sm-3 control-label">版本数</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_num" name="vision_num" class="form-control"
-                                                       required value="{{vision.vision_num}}" readonly>
+                                                <input type="text" id="modify_num" name="version_num" class="form-control"
+                                                       required value="{{version.version_num}}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="modify_name" class="col-sm-3 control-label">版本名称</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="modify_name" name="vision_name" class="form-control"
-                                                       required value="{{vision.vision_name}}" readonly>
+                                                <input type="text" id="modify_name" name="version_name" class="form-control"
+                                                       required value="{{version.version_name}}" readonly>
                                             </div>
                                         </div>
 
@@ -188,7 +188,7 @@
                                             <label for="modify_executor" class="col-sm-3 control-label">执行人</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="modify_executor" name="executor" class="form-control"
-                                                       required value="{{vision.executor}}">
+                                                       required value="{{version.executor}}">
                                             </div>
                                         </div>
 
@@ -196,7 +196,7 @@
                                             <label for="modify_start" class="col-sm-3 control-label">开始时间</label>
                                             <div class="col-sm-9">
                                                 <input type="date" id="modify_start" name="start_time" class="form-control"
-                                                       value="{{vision.start_time}}">
+                                                       value="{{version.start_time}}">
                                             </div>
                                         </div>
 
@@ -204,7 +204,7 @@
                                             <label for="modify_end" class="col-sm-3 control-label">结束时间</label>
                                             <div class="col-sm-9">
                                                 <input type="date" id="modify_end" name="end_time" class="form-control"
-                                                       value="{{vision.end_time}}">
+                                                       value="{{version.end_time}}">
                                             </div>
                                         </div>
 
@@ -229,17 +229,17 @@
     <nav aria-label="Page navigation">
         <ul class="pagination">
             {# 如果有上一页 #}
-            {% if vision_data.has_previous %}
+            {% if version_data.has_previous %}
                 <li>
-                    <a href="?page={{vision_data.previous_page_number}}&search={{search_data}}" aria-label="Previous">
+                    <a href="?page={{version_data.previous_page_number}}&search={{search_data}}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
             {% endif %}
 
             {# 显示页码 #}
-            {% for pg in vision_data.paginator.page_range %}
-                {% if vision_data.number == pg %}
+            {% for pg in version_data.paginator.page_range %}
+                {% if version_data.number == pg %}
                     <li class="active">
                         <a href="?search={{search_data}}&page={{pg}}">{{pg}}</a>
                     </li>
@@ -251,9 +251,9 @@
             {% endfor %}
 
             {# 如果有下一页 #}
-            {% if vision_data.has_next %}
+            {% if version_data.has_next %}
                 <li>
-                    <a href="?page={{vision_data.next_page_number}}&search={{search_data}}" aria-label="Next">
+                    <a href="?page={{version_data.next_page_number}}&search={{search_data}}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>

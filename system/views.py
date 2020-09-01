@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.shortcuts import render
 from login.models import User
@@ -6,6 +7,7 @@ from login.models import User
 
 
 # 用户信息
+@login_required
 def user(request):
     if User.objects.count() == 0:  # 如果没有用户
         context = {
@@ -20,6 +22,7 @@ def user(request):
 
 
 # 角色信息
+@login_required
 def role(request):
     admin_set = Group.objects.get(id=1).user_set.all()  # 所有管理员角色用户
     leader_set = Group.objects.get(id=2).user_set.all()  # 所有组长角色用户

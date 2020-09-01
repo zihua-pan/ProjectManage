@@ -1,5 +1,4 @@
-from datetime import datetime
-import xlrd
+from datetime import datetime, date
 import xlwt
 
 
@@ -22,10 +21,12 @@ def export(mod):
     # 遍历数据写入表
     row = 1
     for item in mod_set:
-        for i in range(0, len(fields)):
+        for i in range(len(fields)):
             field = item[fields[i]]  # 分离出单个字段值
             if isinstance(field, datetime):  # 判断是否为日期时间类型
                 field = field.strftime("%Y-%m-%d %H:%M:%S")  # 格式化输出日期时间
+            if isinstance(field, date):
+                field = field.strftime("%Y-%m-%d")  # 格式化输出日期
             worksheet.write(row, i, field)
         row += 1
     return workbook
@@ -33,7 +34,6 @@ def export(mod):
 
 # 导出模板
 def template(mod):
-    # 创建excel表
     workbook = xlwt.Workbook(encoding='utf-8')
     worksheet = workbook.add_sheet('MySheet')
     # 遍历字段
